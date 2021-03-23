@@ -44,7 +44,7 @@ const Option = React.memo(({ value }) => {
   );
 });
 
-export const CreateTodoForm = React.memo(({ onAction }) => {
+const CreateTodoForm = ({ onAction }) => {
   const [todo, dispatch] = useReducer(reducer, initialTodo);
 
   const handleKeyPress = (event) => {
@@ -112,4 +112,6 @@ export const CreateTodoForm = React.memo(({ onAction }) => {
       </div>
     </>
   );
-});
+};
+
+export default React.memo(CreateTodoForm);

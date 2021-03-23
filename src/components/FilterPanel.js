@@ -23,7 +23,7 @@ const IconButton = React.memo(({ value, filterState, handleClick }) => {
   });
 });
 
-export const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
+const FilterPanel = ({ filterState, toggleFilterState }) => {
   const handleClick = useCallback(
     (event) => {
       const element = event.target.closest("[data-name]");
@@ -56,4 +56,6 @@ export const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
       </div>
     </>
   );
-});
+};
+
+export default React.memo(FilterPanel);

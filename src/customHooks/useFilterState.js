@@ -10,7 +10,7 @@ const initialFilterState = {
   [CATEGORY.SOCIAL]: false,
 };
 
-export const useFilterState = () => {
+const useFilterState = () => {
   const [filterState, setFilterState] = useState(initialFilterState);
 
   const toggleFilterState = useCallback((filter) => {
@@ -60,3 +60,5 @@ export const useFilterState = () => {
 
   return [filterState, filterTodos, toggleFilterState];
 };
+
+export default useFilterState;

@@ -15,7 +15,7 @@ const getRatioInFraction = (numberOfTodos, numberOfCompletedTodos) => {
   return numberOfCompletedTodos + " / " + numberOfTodos;
 };
 
-export const Analytics = React.memo(({ todos }) => {
+const Analytics = ({ todos }) => {
   const numberOfTodos = todos.length;
   const numberOfCompletedTodos = todos.filter(
     (todo) => todo.isCompleted === true
@@ -39,4 +39,6 @@ export const Analytics = React.memo(({ todos }) => {
       <p className="analyticsText">Analytics</p>
     </div>
   );
-});
+};
+
+export default React.memo(Analytics);

@@ -28,7 +28,7 @@ const reducer = (todos, action) => {
   }
 };
 
-export const useTodoAppState = () => {
+const useTodoAppState = () => {
   const [todos, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
@@ -102,3 +102,5 @@ export const useTodoAppState = () => {
 
   return [todos, findTodoById, onAction];
 };
+
+export default useTodoAppState;

@@ -1,5 +1,5 @@
 import { TodoList } from "./TodoList";
-import { BulkSelectors } from "./BulkSelectors";
+import { BulkActionPanel } from "./BulkActionPanel";
 import { FilterPanel } from "./FilterPanel";
 import { Analytics } from "./Analytics";
 import { CreateTodoForm } from "./CreateTodoForm";
@@ -8,7 +8,7 @@ import { useFilterState } from "../customHooks/useFilterState";
 import { useState } from "react";
 import { useEditWindow } from "../customHooks/useEditWindow";
 import React, { useCallback, useMemo } from "react";
-export const TodoApp = React.memo(() => {
+const TodoApp = () => {
   const [todos, findTodoById, onAction] = useTodoAppState();
   const [filterState, filterTodos, toggleFilterState] = useFilterState();
   const [editWindow, showEditWindow] = useEditWindow(onAction);
@@ -41,7 +41,7 @@ export const TodoApp = React.memo(() => {
             selectedTodoIds={selectedTodoIds}
             showEditWindow={showEditWindow}
           />
-          <BulkSelectors
+          <BulkActionPanel
             selectedTodoIds={selectedTodoIds}
             resetSelectedTodoIds={resetSelectedTodoIds}
             onAction={onAction}
@@ -61,4 +61,6 @@ export const TodoApp = React.memo(() => {
       {editWindow}
     </>
   );
-});
+};
+
+export default React.memo(TodoApp);

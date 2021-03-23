@@ -14,7 +14,7 @@ const Option = ({ value }) => {
     </>
   );
 };
-export const Modal = ({ todo, closeEditWindow, onAction }) => {
+const Modal = ({ todo, closeEditWindow, onAction }) => {
   const [updatedTodo, setUpdatedTodo] = useState(todo);
 
   const updateState = (event) => {
@@ -84,3 +84,5 @@ export const Modal = ({ todo, closeEditWindow, onAction }) => {
     </div>
   );
 };
+
+export default React.memo(Modal);

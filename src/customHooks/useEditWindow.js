@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { Modal } from "../components/Modal";
 
-export const useEditWindow = (onAction) => {
+const useEditWindow = (onAction) => {
   const [editWindow, setEditWindow] = useState({ show: false });
 
   const showEditWindow = useCallback((todo) => {
@@ -40,3 +40,5 @@ export const useEditWindow = (onAction) => {
 
   return [modal, showEditWindow];
 };
+
+export default useEditWindow;

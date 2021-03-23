@@ -9,6 +9,9 @@ export const Todo = React.memo(
       onAction({
         type: ACTIONS.UPDATE,
         payload: updatedTodo,
+      }).catch((err) => {
+        console.log(err);
+        //ADD SNACKBAR HERE
       });
     };
 
@@ -16,6 +19,9 @@ export const Todo = React.memo(
       onAction({
         type: ACTIONS.DELETE,
         payload: todo.id,
+      }).catch((err) => {
+        console.log(err);
+        //ADD SNACKBAR HERE
       });
     };
 

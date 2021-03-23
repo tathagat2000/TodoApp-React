@@ -11,18 +11,28 @@ export const BulkSelectors = React.memo(
       onAction({
         type: ACTIONS.UPDATE,
         payload: updatedTodos,
-      }).then(() => {
-        resetSelectedTodoIds();
-      });
+      })
+        .then(() => {
+          resetSelectedTodoIds();
+        })
+        .catch((err) => {
+          console.log(err);
+          //ADD SNACKBAR HERE
+        });
     };
 
     const onDelete = () => {
       onAction({
         type: ACTIONS.DELETE,
         payload: selectedTodoIds,
-      }).then(() => {
-        resetSelectedTodoIds();
-      });
+      })
+        .then(() => {
+          resetSelectedTodoIds();
+        })
+        .catch((err) => {
+          console.log(err);
+          //ADD SNACKBAR HERE
+        });
     };
 
     return (

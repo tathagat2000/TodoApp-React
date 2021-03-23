@@ -32,8 +32,12 @@ export const Modal = ({ todo, closeEditWindow, onAction }) => {
     onAction({
       type: ACTIONS.UPDATE,
       payload: updatedTodo,
-    });
-    closeEditWindow();
+    })
+      .then(closeEditWindow)
+      .catch((err) => {
+        console.log(err);
+        //ADD SNACKBAR HERE
+      });
   };
 
   return (

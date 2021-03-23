@@ -54,9 +54,14 @@ export const CreateTodoForm = React.memo(({ onAction }) => {
       onAction({
         type: ACTIONS.ADD,
         payload: todoObject,
-      }).then(() => {
-        dispatch({ type: ACTIONS.RESET });
-      });
+      })
+        .then(() => {
+          dispatch({ type: ACTIONS.RESET });
+        })
+        .catch((err) => {
+          console.log(err);
+          //ADD SNACKBAR HERE
+        });
     }
   };
 

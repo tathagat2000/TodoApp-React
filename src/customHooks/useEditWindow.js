@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from "react";
-import { Modal } from "../components/Modal";
+import Modal from "../components/Modal";
 
 const useEditWindow = (onAction) => {
   const [editWindow, setEditWindow] = useState({ show: false });

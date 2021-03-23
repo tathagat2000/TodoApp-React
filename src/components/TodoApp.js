@@ -1,13 +1,12 @@
-import { TodoList } from "./TodoList";
-import { BulkActionPanel } from "./BulkActionPanel";
-import { FilterPanel } from "./FilterPanel";
-import { Analytics } from "./Analytics";
-import { CreateTodoForm } from "./CreateTodoForm";
-import { useTodoAppState } from "../customHooks/useTodoAppState";
-import { useFilterState } from "../customHooks/useFilterState";
-import { useState } from "react";
-import { useEditWindow } from "../customHooks/useEditWindow";
-import React, { useCallback, useMemo } from "react";
+import TodoList from "./TodoList";
+import BulkActionPanel from "./BulkActionPanel";
+import FilterPanel from "./FilterPanel";
+import Analytics from "./Analytics";
+import CreateTodoForm from "./CreateTodoForm";
+import useTodoAppState from "../customHooks/useTodoAppState";
+import useFilterState from "../customHooks/useFilterState";
+import useEditWindow from "../customHooks/useEditWindow";
+import React, { useCallback, useMemo, useState } from "react";
 const TodoApp = () => {
   const [todos, findTodoById, onAction] = useTodoAppState();
   const [filterState, filterTodos, toggleFilterState] = useFilterState();

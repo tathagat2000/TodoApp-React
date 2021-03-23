@@ -7,13 +7,15 @@ import { useTodoAppState } from "../customHooks/useTodoAppState";
 import { useFilterState } from "../customHooks/useFilterState";
 import { useState } from "react";
 import { useEditWindow } from "../customHooks/useEditWindow";
-export const TodoApp = () => {
+import React from "react";
+import { useCallback, useMemo } from "react/cjs/react.development";
+export const TodoApp = React.memo(() => {
   const [todos, findTodoById, onAction] = useTodoAppState();
   const [filterState, filterTodos, toggleFilterState] = useFilterState();
   const [editWindow, showEditWindow] = useEditWindow(onAction);
   const [selectedTodoIds, setSelectedTodoIds] = useState([]);
 
-  const toggleSelectTodo = (id) => {
+  const toggleSelectTodo = useCallback((id) => {
     setSelectedTodoIds((prev) => {
       if (prev.includes(id)) {
         return prev.filter((todoId) => todoId !== id);
@@ -21,13 +23,13 @@ export const TodoApp = () => {
         return prev.concat(id);
       }
     });
-  };
+  }, []);
 
-  const resetSelectedTodoIds = () => {
+  const resetSelectedTodoIds = useCallback(() => {
     setSelectedTodoIds([]);
-  };
+  }, []);
 
-  const filteredTodos = filterTodos(todos);
+  const filteredTodos = useMemo(() => filterTodos(todos), [filterTodos, todos]);
 
   return (
     <>
@@ -60,4 +62,4 @@ export const TodoApp = () => {
       {editWindow}
     </>
   );
-};
+});

@@ -1,4 +1,5 @@
-export const Header = () => {
+import React from "react";
+export const Header = React.memo(() => {
   const currentDate = new Date().toDateString();
   return (
     <>
@@ -8,4 +9,4 @@ export const Header = () => {
       </div>
     </>
   );
-};
+});

@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useCallback, useReducer } from "react";
 import { ACTIONS, CATEGORY, URGENCY, NAMES } from "../constants";
 import { helperFunctions } from "../helperFunctions";
 
@@ -30,7 +30,7 @@ const createTodoObject = (todo) => {
   };
 };
 
-const Option = ({ value }) => {
+const Option = React.memo(({ value }) => {
   return (
     <>
       {Object.entries(value).map(([key, value]) => {
@@ -42,9 +42,9 @@ const Option = ({ value }) => {
       })}
     </>
   );
-};
+});
 
-export const CreateTodoForm = ({ onAction }) => {
+export const CreateTodoForm = React.memo(({ onAction }) => {
   const [todo, dispatch] = useReducer(reducer, initialTodo);
 
   const handleKeyPress = (event) => {
@@ -60,7 +60,7 @@ export const CreateTodoForm = ({ onAction }) => {
     }
   };
 
-  const updateState = (event) => {
+  const updateState = useCallback((event) => {
     dispatch({
       type: ACTIONS.UPDATE,
       payload: {
@@ -68,7 +68,7 @@ export const CreateTodoForm = ({ onAction }) => {
         value: event.target.value,
       },
     });
-  };
+  }, []);
 
   return (
     <>
@@ -107,4 +107,4 @@ export const CreateTodoForm = ({ onAction }) => {
       </div>
     </>
   );
-};
+});

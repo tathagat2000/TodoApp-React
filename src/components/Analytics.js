@@ -1,3 +1,5 @@
+import React from "react";
+
 const getRatioInDecimal = (numberOfTodos, numberOfCompletedTodos) => {
   let value;
   if (numberOfCompletedTodos === 0) {
@@ -13,7 +15,7 @@ const getRatioInFraction = (numberOfTodos, numberOfCompletedTodos) => {
   return numberOfCompletedTodos + " / " + numberOfTodos;
 };
 
-export const Analytics = ({ todos }) => {
+export const Analytics = React.memo(({ todos }) => {
   const numberOfTodos = todos.length;
   const numberOfCompletedTodos = todos.filter(
     (todo) => todo.isCompleted === true
@@ -37,4 +39,4 @@ export const Analytics = ({ todos }) => {
       <p className="analyticsText">Analytics</p>
     </div>
   );
-};
+});

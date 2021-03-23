@@ -1,7 +1,8 @@
 import { URGENCY, CATEGORY } from "../constants";
 import { icons } from "../icons";
+import React, { useCallback } from "react";
 
-const IconButton = ({ value, filterState, handleClick }) => {
+const IconButton = React.memo(({ value, filterState, handleClick }) => {
   return Object.entries(value).map(([key, value]) => {
     let className;
     if (filterState[value]) {
@@ -20,14 +21,18 @@ const IconButton = ({ value, filterState, handleClick }) => {
       </button>
     );
   });
-};
-export const FilterPanel = ({ filterState, toggleFilterState }) => {
-  const handleClick = (event) => {
-    const element = event.target.closest("[data-name]");
-    if (element) {
-      toggleFilterState(element.dataset.name);
-    }
-  };
+});
+
+export const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
+  const handleClick = useCallback(
+    (event) => {
+      const element = event.target.closest("[data-name]");
+      if (element) {
+        toggleFilterState(element.dataset.name);
+      }
+    },
+    [toggleFilterState]
+  );
   return (
     <>
       <div className="filter colorAndRadius">
@@ -51,4 +56,4 @@ export const FilterPanel = ({ filterState, toggleFilterState }) => {
       </div>
     </>
   );
-};
+});

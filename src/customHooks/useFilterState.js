@@ -1,5 +1,6 @@
 import { URGENCY, CATEGORY, NAMES } from "../constants";
 import { useState } from "react";
+import { useCallback } from "react/cjs/react.development";
 
 const initialFilterState = {
   [URGENCY.LOW]: false,
@@ -13,9 +14,9 @@ const initialFilterState = {
 export const useFilterState = () => {
   const [filterState, setFilterState] = useState(initialFilterState);
 
-  const toggleFilterState = (filter) => {
+  const toggleFilterState = useCallback((filter) => {
     setFilterState((prev) => ({ ...prev, [filter]: !prev[filter] }));
-  };
+  }, []);
 
   const computeUrgencyFilterValue = () => {
     return (
@@ -42,17 +43,21 @@ export const useFilterState = () => {
     });
   };
 
-  const filterTodos = (todos) => {
-    const urgencyFilter = computeUrgencyFilterValue();
+  const filterTodos = useCallback(
+    (todos) => {
+      const urgencyFilter = computeUrgencyFilterValue();
 
-    const categoryFilter = computeCategoryFilterValue();
+      const categoryFilter = computeCategoryFilterValue();
 
-    if (urgencyFilter === false && categoryFilter === false) {
-      return todos;
-    }
+      if (urgencyFilter === false && categoryFilter === false) {
+        return todos;
+      }
 
-    return filterAccordingToUrgencyAndCategory(todos);
-  };
+      return filterAccordingToUrgencyAndCategory(todos);
+    },
+    [filterState]
+  );
+  //DOUBT
 
   return [filterState, filterTodos, toggleFilterState];
 };

@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useEffect, useReducer } from "react";
 import { ACTIONS } from "../constants";
 import { helperFunctions } from "../helperFunctions";
@@ -76,7 +77,7 @@ export const useTodoAppState = () => {
     });
   };
 
-  const onAction = (action) => {
+  const onAction = useCallback((action) => {
     switch (action.type) {
       case ACTIONS.ADD:
         return addTodo(action.payload);
@@ -90,11 +91,14 @@ export const useTodoAppState = () => {
       default:
         break;
     }
-  };
+  }, []);
 
-  const findTodoById = (id) => {
-    return todos.find((todo) => todo.id === id);
-  };
+  const findTodoById = useCallback(
+    (id) => {
+      return todos.find((todo) => todo.id === id);
+    },
+    [todos]
+  );
 
   return [todos, findTodoById, onAction];
 };

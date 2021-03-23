@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useCallback, useMemo } from "react/cjs/react.development";
+import React, { useState, useMemo, useCallback } from "react";
 import { Modal } from "../components/Modal";
 
 export const useEditWindow = (onAction) => {

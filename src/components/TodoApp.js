@@ -7,8 +7,7 @@ import { useTodoAppState } from "../customHooks/useTodoAppState";
 import { useFilterState } from "../customHooks/useFilterState";
 import { useState } from "react";
 import { useEditWindow } from "../customHooks/useEditWindow";
-import React from "react";
-import { useCallback, useMemo } from "react/cjs/react.development";
+import React, { useCallback, useMemo } from "react";
 export const TodoApp = React.memo(() => {
   const [todos, findTodoById, onAction] = useTodoAppState();
   const [filterState, filterTodos, toggleFilterState] = useFilterState();

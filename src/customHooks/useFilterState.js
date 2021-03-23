@@ -1,6 +1,5 @@
 import { URGENCY, CATEGORY, NAMES } from "../constants";
-import { useState } from "react";
-import { useCallback } from "react/cjs/react.development";
+import { useState, useCallback } from "react";
 
 const initialFilterState = {
   [URGENCY.LOW]: false,

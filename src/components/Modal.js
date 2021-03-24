@@ -14,7 +14,7 @@ const Option = ({ value }) => {
     </>
   );
 };
-const Modal = ({ todo, closeEditWindow, onAction }) => {
+const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
   const [updatedTodo, setUpdatedTodo] = useState(todo);
 
   const updateState = (event) => {
@@ -29,9 +29,9 @@ const Modal = ({ todo, closeEditWindow, onAction }) => {
   };
 
   const onSave = () => {
-    onAction({
+    onTodoAction({
       type: ACTIONS.UPDATE,
-      payload: updatedTodo,
+      payload: { updatedTodo },
     })
       .then(closeEditWindow)
       .catch((err) => {

@@ -5,16 +5,16 @@ import React from "react";
 const BulkActionPanel = ({
   selectedTodoIds,
   resetSelectedTodoIds,
-  onAction,
+  onTodoAction,
   findTodoById,
 }) => {
   const updateCompletedValue = (isCompleted) => {
     const updatedTodos = selectedTodoIds.map(findTodoById).map((todo) => {
       return { ...todo, isCompleted };
     });
-    onAction({
+    onTodoAction({
       type: ACTIONS.UPDATE,
-      payload: updatedTodos,
+      payload: { updatedTodo: updatedTodos },
     })
       .then(() => {
         resetSelectedTodoIds();
@@ -26,9 +26,9 @@ const BulkActionPanel = ({
   };
 
   const onDelete = () => {
-    onAction({
+    onTodoAction({
       type: ACTIONS.DELETE,
-      payload: selectedTodoIds,
+      payload: { id: selectedTodoIds },
     })
       .then(() => {
         resetSelectedTodoIds();

@@ -77,16 +77,16 @@ const useTodoAppState = () => {
     });
   };
 
-  const onAction = useCallback((action) => {
+  const onTodoAction = useCallback((action) => {
     switch (action.type) {
       case ACTIONS.ADD:
-        return addTodo(action.payload);
+        return addTodo(action.payload.todo);
 
       case ACTIONS.UPDATE:
-        return updateTodo(action.payload);
+        return updateTodo(action.payload.updatedTodo);
 
       case ACTIONS.DELETE:
-        return deleteTodo(action.payload);
+        return deleteTodo(action.payload.id);
 
       default:
         break;
@@ -100,7 +100,7 @@ const useTodoAppState = () => {
     [todos]
   );
 
-  return [todos, findTodoById, onAction];
+  return [todos, findTodoById, onTodoAction];
 };
 
 export default useTodoAppState;

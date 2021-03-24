@@ -44,16 +44,16 @@ const Option = React.memo(({ value }) => {
   );
 });
 
-const CreateTodoForm = ({ onAction }) => {
+const CreateTodoForm = ({ onTodoAction }) => {
   const [todo, dispatch] = useReducer(reducer, initialTodo);
 
   const handleKeyPress = (event) => {
     const enterKey = event.keyCode || event.which || 0;
     if (enterKey === 13 && todo.text) {
       const todoObject = createTodoObject(todo);
-      onAction({
+      onTodoAction({
         type: ACTIONS.ADD,
-        payload: todoObject,
+        payload: { todo: todoObject },
       })
         .then(() => {
           dispatch({ type: ACTIONS.RESET });

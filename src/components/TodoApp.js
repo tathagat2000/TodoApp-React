@@ -1,4 +1,3 @@
-import TodoList from "./TodoList";
 import BulkActionPanel from "./BulkActionPanel";
 import FilterPanel from "./FilterPanel";
 import Analytics from "./Analytics";
@@ -7,10 +6,11 @@ import useTodoAppState from "../customHooks/useTodoAppState";
 import useFilterState from "../customHooks/useFilterState";
 import useEditWindow from "../customHooks/useEditWindow";
 import React, { useCallback, useMemo, useState } from "react";
+import TodoPanel from "./TodoPanel";
 const TodoApp = () => {
-  const [todos, findTodoById, onAction] = useTodoAppState();
+  const [todos, findTodoById, onTodoAction] = useTodoAppState();
   const [filterState, filterTodos, toggleFilterState] = useFilterState();
-  const [editWindow, showEditWindow] = useEditWindow(onAction);
+  const [editWindow, showEditWindow] = useEditWindow(onTodoAction);
   const [selectedTodoIds, setSelectedTodoIds] = useState([]);
 
   const toggleSelectTodo = useCallback((id) => {
@@ -33,9 +33,9 @@ const TodoApp = () => {
     <>
       <div className="mainBody">
         <div className="col1 colorAndRadius">
-          <TodoList
+          <TodoPanel
             todos={filteredTodos}
-            onAction={onAction}
+            onTodoAction={onTodoAction}
             toggleSelectTodo={toggleSelectTodo}
             selectedTodoIds={selectedTodoIds}
             showEditWindow={showEditWindow}
@@ -43,7 +43,7 @@ const TodoApp = () => {
           <BulkActionPanel
             selectedTodoIds={selectedTodoIds}
             resetSelectedTodoIds={resetSelectedTodoIds}
-            onAction={onAction}
+            onTodoAction={onTodoAction}
             findTodoById={findTodoById}
           />
         </div>
@@ -54,7 +54,7 @@ const TodoApp = () => {
             toggleFilterState={toggleFilterState}
           />
           <Analytics todos={filteredTodos} />
-          <CreateTodoForm onAction={onAction} />
+          <CreateTodoForm onTodoAction={onTodoAction} />
         </div>
       </div>
       {editWindow}
@@ -62,4 +62,4 @@ const TodoApp = () => {
   );
 };
 
-export default React.memo(TodoApp);
+export default TodoApp;

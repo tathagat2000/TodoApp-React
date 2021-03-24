@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from "react";
 import Modal from "../components/Modal";
 
-const useEditWindow = (onAction) => {
+const useEditWindow = (onTodoAction) => {
   const [editWindow, setEditWindow] = useState({ show: false });
 
   const showEditWindow = useCallback((todo) => {
@@ -18,7 +18,7 @@ const useEditWindow = (onAction) => {
   //     <Modal
   //       todo={editWindow.payload}
   //       closeEditWindow={closeEditWindow}
-  //       onAction={onAction}
+  //       onTodoAction={onTodoAction}
   //     />
   //   );
   // }
@@ -29,13 +29,13 @@ const useEditWindow = (onAction) => {
         <Modal
           todo={editWindow.payload}
           closeEditWindow={closeEditWindow}
-          onAction={onAction}
+          onTodoAction={onTodoAction}
         />
       );
     } else {
       return undefined;
     }
-  }, [editWindow, closeEditWindow, onAction]);
+  }, [editWindow, closeEditWindow, onTodoAction]);
   //DOUBT
 
   return [modal, showEditWindow];

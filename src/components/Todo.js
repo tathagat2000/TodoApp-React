@@ -4,16 +4,16 @@ import React from "react";
 
 const Todo = ({
   todo,
-  onAction,
+  onTodoAction,
   toggleSelectTodo,
   showEditWindow,
   isSelected,
 }) => {
   const toggleComplete = () => {
     const updatedTodo = { ...todo, isCompleted: !todo.isCompleted };
-    onAction({
+    onTodoAction({
       type: ACTIONS.UPDATE,
-      payload: updatedTodo,
+      payload: { updatedTodo },
     }).catch((err) => {
       console.log(err);
       //ADD SNACKBAR HERE
@@ -21,9 +21,9 @@ const Todo = ({
   };
 
   const onDelete = (event) => {
-    onAction({
+    onTodoAction({
       type: ACTIONS.DELETE,
-      payload: todo.id,
+      payload: { id: todo.id },
     }).catch((err) => {
       console.log(err);
       //ADD SNACKBAR HERE

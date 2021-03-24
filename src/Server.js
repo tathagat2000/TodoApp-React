@@ -17,7 +17,7 @@ export class Server {
   getDatabase = () => {
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
-        resolve(helperFunctions.makeCopy(this.database));
+        resolve(this.database);
       } else {
         reject("Please Refresh Again");
       }
@@ -37,8 +37,7 @@ export class Server {
     const todoList = helperFunctions.convertToList(todos);
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
-        const todoListCopy = helperFunctions.makeCopy(todoList);
-        this.database = [...this.database, ...todoListCopy];
+        this.database = [...this.database, ...todoList];
         this.saveDatabaseInLocalStorage();
         resolve("done");
       } else {
@@ -66,14 +65,13 @@ export class Server {
 
   updateTodo = (todos) => {
     const todoList = helperFunctions.convertToList(todos);
+    const todoIds = todoList.map((todo) => todo.id);
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
-        const databaseCopy = helperFunctions.makeCopy(this.database);
-        todoList.forEach((todo) => {
-          const index = this.findIndexOfTodoById(todo.id);
-          databaseCopy[index] = { ...todo };
-        });
-        this.database = databaseCopy;
+        this.database = this.database.filter(
+          (todo) => !todoIds.includes(todo.id)
+        );
+        this.database = [...this.database, ...todoList];
         this.saveDatabaseInLocalStorage();
         resolve("done");
       } else {

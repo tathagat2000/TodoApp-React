@@ -1,7 +1,7 @@
 import { ACTIONS } from "../constants";
 import { icons } from "../icons";
-import React from "react";
-
+import React, { useContext } from "react";
+import snackbarContext from "../context/snackbarContext";
 const Todo = ({
   todo,
   onTodoAction,
@@ -9,14 +9,14 @@ const Todo = ({
   showEditWindow,
   isSelected,
 }) => {
+  const handleSnackbar = useContext(snackbarContext);
   const toggleComplete = () => {
     const updatedTodo = { ...todo, isCompleted: !todo.isCompleted };
     onTodoAction({
       type: ACTIONS.UPDATE,
       payload: { updatedTodo },
     }).catch((err) => {
-      console.log(err);
-      //ADD SNACKBAR HERE
+      handleSnackbar();
     });
   };
 
@@ -25,8 +25,7 @@ const Todo = ({
       type: ACTIONS.DELETE,
       payload: { id: todo.id },
     }).catch((err) => {
-      console.log(err);
-      //ADD SNACKBAR HERE
+      handleSnackbar();
     });
   };
 

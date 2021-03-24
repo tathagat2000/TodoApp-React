@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ACTIONS, CATEGORY, NAMES, URGENCY } from "../constants";
-
+import snackbarContext from "../context/snackbarContext";
 const Option = ({ value }) => {
   return (
     <>
@@ -16,6 +16,7 @@ const Option = ({ value }) => {
 };
 const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
   const [updatedTodo, setUpdatedTodo] = useState(todo);
+  const handleSnackbar = useContext(snackbarContext);
 
   const updateState = (event) => {
     setUpdatedTodo((prev) => ({
@@ -35,8 +36,7 @@ const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
     })
       .then(closeEditWindow)
       .catch((err) => {
-        console.log(err);
-        //ADD SNACKBAR HERE
+        handleSnackbar();
       });
   };
 

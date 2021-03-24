@@ -32,16 +32,22 @@ const useTodoAppState = () => {
   const [todos, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
-    server.getDatabase().then((todos) => {
-      if (todos) {
-        todos.forEach?.((todo) => {
-          dispatch({
-            type: ACTIONS.ADD,
-            payload: todo,
+    server
+      .getDatabase()
+      .then((todos) => {
+        if (todos) {
+          todos.forEach?.((todo) => {
+            dispatch({
+              type: ACTIONS.ADD,
+              payload: todo,
+            });
           });
-        });
-      }
-    });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        //DOUBT What should I do here?
+      });
   }, []);
 
   const addTodo = (todos) => {

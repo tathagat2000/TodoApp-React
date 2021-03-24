@@ -7,11 +7,15 @@ import useFilterState from "../customHooks/useFilterState";
 import useEditWindow from "../customHooks/useEditWindow";
 import React, { useCallback, useMemo, useState } from "react";
 import TodoPanel from "./TodoPanel";
+import Snackbar from "./Snackbar";
+import useSnackbar from "../customHooks/useSnackbar";
+import snackbarContext from "../context/snackbarContext";
 const TodoApp = () => {
   const [todos, findTodoById, onTodoAction] = useTodoAppState();
   const [filterState, filterTodos, toggleFilterState] = useFilterState();
   const [editWindow, showEditWindow] = useEditWindow(onTodoAction);
   const [selectedTodoIds, setSelectedTodoIds] = useState([]);
+  const [showSnackbar, handleSnackbar] = useSnackbar();
 
   const toggleSelectTodo = useCallback((id) => {
     setSelectedTodoIds((prev) => {
@@ -31,33 +35,36 @@ const TodoApp = () => {
 
   return (
     <>
-      <div className="mainBody">
-        <div className="col1 colorAndRadius">
-          <TodoPanel
-            todos={filteredTodos}
-            onTodoAction={onTodoAction}
-            toggleSelectTodo={toggleSelectTodo}
-            selectedTodoIds={selectedTodoIds}
-            showEditWindow={showEditWindow}
-          />
-          <BulkActionPanel
-            selectedTodoIds={selectedTodoIds}
-            resetSelectedTodoIds={resetSelectedTodoIds}
-            onTodoAction={onTodoAction}
-            findTodoById={findTodoById}
-          />
-        </div>
+      <snackbarContext.Provider value={handleSnackbar}>
+        <div className="mainBody">
+          <div className="col1 colorAndRadius">
+            <TodoPanel
+              todos={filteredTodos}
+              onTodoAction={onTodoAction}
+              toggleSelectTodo={toggleSelectTodo}
+              selectedTodoIds={selectedTodoIds}
+              showEditWindow={showEditWindow}
+            />
+            <BulkActionPanel
+              selectedTodoIds={selectedTodoIds}
+              resetSelectedTodoIds={resetSelectedTodoIds}
+              onTodoAction={onTodoAction}
+              findTodoById={findTodoById}
+            />
+          </div>
 
-        <div className="col2">
-          <FilterPanel
-            filterState={filterState}
-            toggleFilterState={toggleFilterState}
-          />
-          <Analytics todos={filteredTodos} />
-          <CreateTodoForm onTodoAction={onTodoAction} />
+          <div className="col2">
+            <FilterPanel
+              filterState={filterState}
+              toggleFilterState={toggleFilterState}
+            />
+            <Analytics todos={filteredTodos} />
+            <CreateTodoForm onTodoAction={onTodoAction} />
+          </div>
         </div>
-      </div>
-      {editWindow}
+        {editWindow}
+        {showSnackbar && <Snackbar />}
+      </snackbarContext.Provider>
     </>
   );
 };

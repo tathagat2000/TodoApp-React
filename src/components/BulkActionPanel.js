@@ -9,7 +9,7 @@ const BulkActionPanel = ({
   onTodoAction,
   findTodoById,
 }) => {
-  const handleSnackbar = useContext(SnackbarContext);
+  const showSnackbar = useContext(SnackbarContext);
   const updateCompletedValue = (isCompleted) => {
     const updatedTodos = selectedTodoIds.map(findTodoById).map((todo) => {
       return { ...todo, isCompleted };
@@ -21,7 +21,7 @@ const BulkActionPanel = ({
       .then(() => {
         resetSelectedTodoIds();
       })
-      .catch(handleSnackbar);
+      .catch(showSnackbar);
   };
 
   const onDelete = () => {
@@ -32,7 +32,7 @@ const BulkActionPanel = ({
       .then(() => {
         resetSelectedTodoIds();
       })
-      .catch(handleSnackbar);
+      .catch(showSnackbar);
   };
 
   return (

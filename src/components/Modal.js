@@ -16,7 +16,7 @@ const Option = ({ value }) => {
 };
 const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
   const [updatedTodo, setUpdatedTodo] = useState(todo);
-  const handleSnackbar = useContext(SnackbarContext);
+  const showSnackbar = useContext(SnackbarContext);
 
   const updateState = (event) => {
     setUpdatedTodo((prev) => ({
@@ -35,7 +35,7 @@ const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
       payload: { updatedTodo },
     })
       .then(closeEditWindow)
-      .catch(handleSnackbar);
+      .catch(showSnackbar);
   };
 
   return (

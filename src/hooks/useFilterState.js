@@ -54,7 +54,6 @@ const useFilterState = () => {
     },
     [filterState]
   );
-  //DOUBT CLEARED
 
   return [filterState, filterTodos, toggleFilterState];
 };

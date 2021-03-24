@@ -6,7 +6,7 @@ import Snackbar from "./Snackbar";
 const SnackbarProvider = ({ children }) => {
   const [snackbar, setSnackbar] = useState({ show: false, message: null });
 
-  const handleSnackbar = useCallback((message = "Please Try Again") => {
+  const showSnackbar = useCallback((message = "Please Try Again") => {
     setSnackbar({ show: true, message });
     setTimeout(() => {
       setSnackbar({ show: false });
@@ -14,7 +14,7 @@ const SnackbarProvider = ({ children }) => {
   }, []);
 
   return (
-    <SnackbarContext.Provider value={handleSnackbar}>
+    <SnackbarContext.Provider value={showSnackbar}>
       {children}
       {snackbar.show && <Snackbar message={snackbar.message} />}
     </SnackbarContext.Provider>

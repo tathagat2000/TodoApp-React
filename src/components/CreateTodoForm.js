@@ -46,7 +46,7 @@ const Option = React.memo(({ value }) => {
 
 const CreateTodoForm = ({ onTodoAction }) => {
   const [todo, dispatch] = useReducer(reducer, initialTodo);
-  const handleSnackbar = useContext(SnackbarContext);
+  const showSnackbar = useContext(SnackbarContext);
 
   const handleKeyPress = (event) => {
     const enterKey = event.keyCode || event.which || 0;
@@ -59,7 +59,7 @@ const CreateTodoForm = ({ onTodoAction }) => {
         .then(() => {
           dispatch({ type: ACTIONS.RESET });
         })
-        .catch(handleSnackbar);
+        .catch(showSnackbar);
     }
   };
 

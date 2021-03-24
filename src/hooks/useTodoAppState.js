@@ -34,7 +34,7 @@ const reducer = (todos, action) => {
 const useTodoAppState = () => {
   const [todos, dispatch] = useReducer(reducer, []);
 
-  const handleSnackbar = useContext(SnackbarContext);
+  const showSnackbar = useContext(SnackbarContext);
 
   useEffect(() => {
     server
@@ -45,8 +45,8 @@ const useTodoAppState = () => {
           payload: { todos: todoList.sort(sortTodos) },
         });
       })
-      .catch(handleSnackbar);
-    //DOUBT DOUBT
+      .catch(showSnackbar);
+    //DOUBT
   }, []);
 
   const addTodo = (todos) => {

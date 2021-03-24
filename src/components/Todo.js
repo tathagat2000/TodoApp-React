@@ -9,20 +9,20 @@ const Todo = ({
   showEditWindow,
   isSelected,
 }) => {
-  const handleSnackbar = useContext(snackbarContext);
+  const showSnackbar = useContext(snackbarContext);
   const toggleComplete = () => {
     const updatedTodo = { ...todo, isCompleted: !todo.isCompleted };
     onTodoAction({
       type: ACTIONS.UPDATE,
       payload: { updatedTodo },
-    }).catch(handleSnackbar);
+    }).catch(showSnackbar);
   };
 
   const onDelete = (event) => {
     onTodoAction({
       type: ACTIONS.DELETE,
       payload: { id: todo.id },
-    }).catch(handleSnackbar);
+    }).catch(showSnackbar);
   };
 
   const onSelect = (event) => {

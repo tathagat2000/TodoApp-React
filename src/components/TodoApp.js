@@ -7,10 +7,11 @@ import useFilterState from "../hooks/useFilterState";
 import useEditWindow from "../hooks/useEditWindow";
 import React, { useCallback, useMemo, useState } from "react";
 import TodoPanel from "./TodoPanel";
+import Modal from "./Modal";
 const TodoApp = () => {
   const [todos, findTodoById, onTodoAction] = useTodoAppState();
   const [filterState, filterTodos, toggleFilterState] = useFilterState();
-  const [editWindow, showEditWindow] = useEditWindow(onTodoAction);
+  const [editWindow, showEditWindow, closeEditWindow] = useEditWindow();
   const [selectedTodoIds, setSelectedTodoIds] = useState([]);
 
   const toggleSelectTodo = useCallback((id) => {
@@ -57,7 +58,13 @@ const TodoApp = () => {
           <CreateTodoForm onTodoAction={onTodoAction} />
         </div>
       </div>
-      {editWindow}
+      {editWindow.show && (
+        <Modal
+          todo={editWindow.payload}
+          closeEditWindow={closeEditWindow}
+          onTodoAction={onTodoAction}
+        />
+      )}
     </>
   );
 };

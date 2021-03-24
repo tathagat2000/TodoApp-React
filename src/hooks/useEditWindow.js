@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
-import Modal from "../components/Modal";
+import { useState, useCallback } from "react";
 
 const useEditWindow = (onTodoAction) => {
   const [editWindow, setEditWindow] = useState({ show: false });
@@ -12,33 +11,7 @@ const useEditWindow = (onTodoAction) => {
     setEditWindow({ show: false });
   }, []);
 
-  // let modal = undefined;
-  // if (editWindow.show === true) {
-  //   modal = (
-  //     <Modal
-  //       todo={editWindow.payload}
-  //       closeEditWindow={closeEditWindow}
-  //       onTodoAction={onTodoAction}
-  //     />
-  //   );
-  // }
-
-  const modal = useMemo(() => {
-    if (editWindow.show === true) {
-      return (
-        <Modal
-          todo={editWindow.payload}
-          closeEditWindow={closeEditWindow}
-          onTodoAction={onTodoAction}
-        />
-      );
-    } else {
-      return undefined;
-    }
-  }, [editWindow, closeEditWindow, onTodoAction]);
-  //DOUBT
-
-  return [modal, showEditWindow];
+  return [editWindow, showEditWindow, closeEditWindow];
 };
 
 export default useEditWindow;

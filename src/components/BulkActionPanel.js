@@ -1,7 +1,7 @@
 import { ACTIONS } from "../constants";
 import { icons } from "../icons";
 import React, { useContext } from "react";
-import snackbarContext from "../context/snackbarContext";
+import SnackbarContext from "../context/SnackbarContext";
 
 const BulkActionPanel = ({
   selectedTodoIds,
@@ -9,7 +9,7 @@ const BulkActionPanel = ({
   onTodoAction,
   findTodoById,
 }) => {
-  const handleSnackbar = useContext(snackbarContext);
+  const handleSnackbar = useContext(SnackbarContext);
   const updateCompletedValue = (isCompleted) => {
     const updatedTodos = selectedTodoIds.map(findTodoById).map((todo) => {
       return { ...todo, isCompleted };
@@ -21,9 +21,7 @@ const BulkActionPanel = ({
       .then(() => {
         resetSelectedTodoIds();
       })
-      .catch((err) => {
-        handleSnackbar();
-      });
+      .catch(handleSnackbar);
   };
 
   const onDelete = () => {
@@ -34,9 +32,7 @@ const BulkActionPanel = ({
       .then(() => {
         resetSelectedTodoIds();
       })
-      .catch((err) => {
-        handleSnackbar();
-      });
+      .catch(handleSnackbar);
   };
 
   return (

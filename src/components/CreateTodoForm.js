@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useReducer } from "react";
 import { ACTIONS, CATEGORY, URGENCY, NAMES } from "../constants";
 import { helperFunctions } from "../helperFunctions";
-import snackbarContext from "../context/snackbarContext";
+import SnackbarContext from "../context/SnackbarContext";
 const initialTodo = {
   [NAMES.TEXT]: "",
   [NAMES.URGENCY]: URGENCY.LOW,
@@ -46,7 +46,7 @@ const Option = React.memo(({ value }) => {
 
 const CreateTodoForm = ({ onTodoAction }) => {
   const [todo, dispatch] = useReducer(reducer, initialTodo);
-  const handleSnackbar = useContext(snackbarContext);
+  const handleSnackbar = useContext(SnackbarContext);
 
   const handleKeyPress = (event) => {
     const enterKey = event.keyCode || event.which || 0;
@@ -59,9 +59,7 @@ const CreateTodoForm = ({ onTodoAction }) => {
         .then(() => {
           dispatch({ type: ACTIONS.RESET });
         })
-        .catch((err) => {
-          handleSnackbar();
-        });
+        .catch(handleSnackbar);
     }
   };
 

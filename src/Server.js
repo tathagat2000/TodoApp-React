@@ -3,7 +3,7 @@ import { helperFunctions } from "./helperFunctions.js";
 export class Server {
   constructor() {
     this.database = this.loadDatabaseFromLocalStorage();
-    this.FailProbability = 0.01;
+    this.FailProbability = 0;
   }
 
   isServerWorking = () => {

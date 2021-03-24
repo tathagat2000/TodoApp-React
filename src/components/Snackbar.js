@@ -1,5 +1,5 @@
-const Snackbar = () => {
-  return <div className="snackbar">"Please Try Again"</div>;
+const Snackbar = ({ message }) => {
+  return <div className="snackbar">{message}</div>;
 };
 
 export default Snackbar;

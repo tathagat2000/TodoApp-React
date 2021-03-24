@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ACTIONS, CATEGORY, NAMES, URGENCY } from "../constants";
-import snackbarContext from "../context/snackbarContext";
+import SnackbarContext from "../context/SnackbarContext";
 const Option = ({ value }) => {
   return (
     <>
@@ -16,7 +16,7 @@ const Option = ({ value }) => {
 };
 const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
   const [updatedTodo, setUpdatedTodo] = useState(todo);
-  const handleSnackbar = useContext(snackbarContext);
+  const handleSnackbar = useContext(SnackbarContext);
 
   const updateState = (event) => {
     setUpdatedTodo((prev) => ({
@@ -35,9 +35,7 @@ const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
       payload: { updatedTodo },
     })
       .then(closeEditWindow)
-      .catch((err) => {
-        handleSnackbar();
-      });
+      .catch(handleSnackbar);
   };
 
   return (

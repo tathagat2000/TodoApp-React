@@ -1,7 +1,7 @@
 import { ACTIONS } from "../constants";
 import { icons } from "../icons";
 import React, { useContext } from "react";
-import snackbarContext from "../context/snackbarContext";
+import snackbarContext from "../context/SnackbarContext";
 const Todo = ({
   todo,
   onTodoAction,
@@ -15,18 +15,14 @@ const Todo = ({
     onTodoAction({
       type: ACTIONS.UPDATE,
       payload: { updatedTodo },
-    }).catch((err) => {
-      handleSnackbar();
-    });
+    }).catch(handleSnackbar);
   };
 
   const onDelete = (event) => {
     onTodoAction({
       type: ACTIONS.DELETE,
       payload: { id: todo.id },
-    }).catch((err) => {
-      handleSnackbar();
-    });
+    }).catch(handleSnackbar);
   };
 
   const onSelect = (event) => {

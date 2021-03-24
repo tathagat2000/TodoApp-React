@@ -9,6 +9,29 @@ const initialFilterState = {
   [CATEGORY.ACADEMIC]: false,
   [CATEGORY.SOCIAL]: false,
 };
+const computeUrgencyFilterValue = (filterState) => {
+  return (
+    filterState[URGENCY.LOW] ||
+    filterState[URGENCY.MEDIUM] ||
+    filterState[URGENCY.HIGH]
+  );
+};
+
+const computeCategoryFilterValue = (filterState) => {
+  return (
+    filterState[CATEGORY.PERSONAL] ||
+    filterState[CATEGORY.ACADEMIC] ||
+    filterState[CATEGORY.SOCIAL]
+  );
+};
+
+const filterAccordingToUrgencyAndCategory = (filterState, todos) => {
+  return todos.filter((todo) => {
+    return (
+      filterState[[todo[NAMES.URGENCY]]] || filterState[[todo[NAMES.CATEGORY]]]
+    );
+  });
+};
 
 const useFilterState = () => {
   const [filterState, setFilterState] = useState(initialFilterState);
@@ -17,46 +40,21 @@ const useFilterState = () => {
     setFilterState((prev) => ({ ...prev, [filter]: !prev[filter] }));
   }, []);
 
-  const computeUrgencyFilterValue = () => {
-    return (
-      filterState[URGENCY.LOW] ||
-      filterState[URGENCY.MEDIUM] ||
-      filterState[URGENCY.HIGH]
-    );
-  };
-
-  const computeCategoryFilterValue = () => {
-    return (
-      filterState[CATEGORY.PERSONAL] ||
-      filterState[CATEGORY.ACADEMIC] ||
-      filterState[CATEGORY.SOCIAL]
-    );
-  };
-
-  const filterAccordingToUrgencyAndCategory = (todos) => {
-    return todos.filter((todo) => {
-      return (
-        filterState[[todo[NAMES.URGENCY]]] ||
-        filterState[[todo[NAMES.CATEGORY]]]
-      );
-    });
-  };
-
   const filterTodos = useCallback(
     (todos) => {
-      const urgencyFilter = computeUrgencyFilterValue();
+      const urgencyFilter = computeUrgencyFilterValue(filterState);
 
-      const categoryFilter = computeCategoryFilterValue();
+      const categoryFilter = computeCategoryFilterValue(filterState);
 
       if (urgencyFilter === false && categoryFilter === false) {
         return todos;
       }
 
-      return filterAccordingToUrgencyAndCategory(todos);
+      return filterAccordingToUrgencyAndCategory(filterState, todos);
     },
     [filterState]
   );
-  //DOUBT
+  //DOUBT CLEARED
 
   return [filterState, filterTodos, toggleFilterState];
 };

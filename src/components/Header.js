@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 const Header = () => {
   const [date, setDate] = useState(new Date().toDateString());
 
@@ -14,7 +15,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="header colorAndRadius">
+      <div className="header curve">
         <div className="date">{date}</div>
         <div className="heading">To-Do App</div>
       </div>
@@ -22,4 +23,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export { Header };

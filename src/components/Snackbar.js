@@ -2,4 +2,4 @@ const Snackbar = ({ message }) => {
   return <div className="snackbar">{message}</div>;
 };
 
-export default Snackbar;
+export { Snackbar };

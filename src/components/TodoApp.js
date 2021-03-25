@@ -1,13 +1,15 @@
-import BulkActionPanel from "./BulkActionPanel";
-import FilterPanel from "./FilterPanel";
-import Analytics from "./Analytics";
-import CreateTodoForm from "./CreateTodoForm";
-import useTodoAppState from "../hooks/useTodoAppState";
-import useFilterState from "../hooks/useFilterState";
-import useEditWindow from "../hooks/useEditWindow";
 import React, { useCallback, useMemo, useState } from "react";
-import TodoPanel from "./TodoPanel";
-import Modal from "./Modal";
+
+import { BulkActionPanel } from "./BulkActionPanel";
+import { FilterPanel } from "./FilterPanel";
+import { Analytics } from "./Analytics";
+import { CreateTodoForm } from "./CreateTodoForm";
+import { useTodoAppState } from "../hooks/useTodoAppState";
+import { useFilterState } from "../hooks/useFilterState";
+import { useEditWindow } from "../hooks/useEditWindow";
+import { TodoPanel } from "./TodoPanel";
+import { Modal } from "./Modal";
+
 const TodoApp = () => {
   const { todoState: todos, findTodoById, onTodoAction } = useTodoAppState();
   const { filterState, filterTodos, toggleFilterState } = useFilterState();
@@ -33,7 +35,7 @@ const TodoApp = () => {
   return (
     <>
       <div className="mainBody">
-        <div className="col1 colorAndRadius">
+        <div className="col1 curve">
           <TodoPanel
             todos={filteredTodos}
             onTodoAction={onTodoAction}
@@ -69,4 +71,4 @@ const TodoApp = () => {
   );
 };
 
-export default React.memo(TodoApp);
+export { TodoApp };

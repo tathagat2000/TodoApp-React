@@ -1,8 +1,10 @@
 import React, { useCallback, useState } from "react";
+
+import { OptionList } from "./OptionList";
+import { useSnackbar } from "./SnackbarProvider";
+
 import { ACTIONS, CATEGORY, URGENCY, NAMES } from "../constants";
 import { helperFunctions } from "../helperFunctions";
-import OptionList from "./OptionList";
-import { useSnackbar } from "./SnackbarProvider";
 
 const INITIAL_TODO = {
   [NAMES.TEXT]: "",
@@ -19,7 +21,7 @@ const createTodoObject = (todo) => {
   };
 };
 
-const CreateTodoForm = ({ onTodoAction }) => {
+const CreateTodoForm = React.memo(({ onTodoAction }) => {
   const [todo, setTodo] = useState(INITIAL_TODO);
   const showSnackbar = useSnackbar();
 
@@ -47,7 +49,7 @@ const CreateTodoForm = ({ onTodoAction }) => {
 
   return (
     <>
-      <div className="createTodo colorAndRadius" onKeyPress={handleKeyPress}>
+      <div className="createTodo curve" onKeyPress={handleKeyPress}>
         <div className="createText">Create Todo</div>
         <input
           data-type={NAMES.TEXT}
@@ -82,6 +84,6 @@ const CreateTodoForm = ({ onTodoAction }) => {
       </div>
     </>
   );
-};
+});
 
-export default React.memo(CreateTodoForm);
+export { CreateTodoForm };

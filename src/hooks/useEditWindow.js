@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-const useEditWindow = (onTodoAction) => {
+const useEditWindow = () => {
   const [editWindow, setEditWindow] = useState({ show: false });
 
   const showEditWindow = useCallback((todo) => {
@@ -14,4 +14,4 @@ const useEditWindow = (onTodoAction) => {
   return { editWindow, showEditWindow, closeEditWindow };
 };
 
-export default useEditWindow;
+export { useEditWindow };

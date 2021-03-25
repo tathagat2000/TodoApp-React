@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { ACTIONS, CATEGORY, NAMES, URGENCY } from "../constants";
-import OptionList from "./OptionList";
+
+import { OptionList } from "./OptionList";
 import { useSnackbar } from "./SnackbarProvider";
 
-const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
+import { ACTIONS, CATEGORY, NAMES, URGENCY } from "../constants";
+
+const Modal = React.memo(({ todo, closeEditWindow, onTodoAction }) => {
   const [updatedTodo, setUpdatedTodo] = useState(todo);
   const showSnackbar = useSnackbar();
 
@@ -70,6 +72,6 @@ const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
       </div>
     </div>
   );
-};
+});
 
-export default React.memo(Modal);
+export { Modal };

@@ -1,5 +1,6 @@
-import { URGENCY, CATEGORY, NAMES } from "../constants";
 import { useState, useCallback } from "react";
+
+import { URGENCY, CATEGORY, NAMES } from "../constants";
 
 const initialFilterState = {
   [URGENCY.LOW]: false,
@@ -58,4 +59,4 @@ const useFilterState = () => {
   return { filterState, filterTodos, toggleFilterState };
 };
 
-export default useFilterState;
+export { useFilterState };

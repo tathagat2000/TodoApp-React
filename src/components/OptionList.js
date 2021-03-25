@@ -1,6 +1,6 @@
 import React from "react";
 
-const OptionList = ({ value }) => {
+const OptionList = React.memo(({ value }) => {
   return (
     <>
       {Object.entries(value).map(([key, value]) => {
@@ -12,6 +12,6 @@ const OptionList = ({ value }) => {
       })}
     </>
   );
-};
+});
 
-export default React.memo(OptionList);
+export { OptionList };

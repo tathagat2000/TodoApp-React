@@ -1,6 +1,7 @@
+import React, { useCallback } from "react";
+
 import { URGENCY, CATEGORY } from "../constants";
 import { icons } from "../icons";
-import React, { useCallback } from "react";
 
 const IconButton = React.memo(({ value, filterState, handleClick }) => {
   return Object.entries(value).map(([key, value]) => {
@@ -17,7 +18,7 @@ const IconButton = React.memo(({ value, filterState, handleClick }) => {
   });
 });
 
-const FilterPanel = ({ filterState, toggleFilterState }) => {
+const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
   const handleClick = useCallback(
     (event) => {
       const element = event.target.closest("[data-name]");
@@ -29,7 +30,7 @@ const FilterPanel = ({ filterState, toggleFilterState }) => {
   );
   return (
     <>
-      <div className="filter colorAndRadius">
+      <div className="filter curve">
         <div className="logos">
           {
             <IconButton
@@ -50,6 +51,6 @@ const FilterPanel = ({ filterState, toggleFilterState }) => {
       </div>
     </>
   );
-};
+});
 
-export default React.memo(FilterPanel);
+export { FilterPanel };

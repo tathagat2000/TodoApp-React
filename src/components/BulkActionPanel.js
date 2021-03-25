@@ -9,9 +9,9 @@ const BulkActionPanel = React.memo(
   ({ selectedTodoIds, resetSelectedTodoIds, onTodoAction, findTodoById }) => {
     const showSnackbar = useSnackbar();
     const updateCompletedValue = (isCompleted) => {
-      const updatedTodos = selectedTodoIds.map(findTodoById).map((todo) => {
-        return { ...todo, isCompleted };
-      });
+      const updatedTodos = selectedTodoIds
+        .map(findTodoById)
+        .map((todo) => ({ ...todo, isCompleted }));
       onTodoAction({
         type: ACTIONS.UPDATE,
         payload: { updatedTodo: updatedTodos },

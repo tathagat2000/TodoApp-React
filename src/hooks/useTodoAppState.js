@@ -8,9 +8,7 @@ import { helperFunctions } from "../helperFunctions";
 
 const server = new Server();
 
-const sortTodos = (todo1, todo2) => {
-  return todo1.id - todo2.id;
-};
+const sortTodos = (todo1, todo2) => todo1.id - todo2.id;
 
 const reducer = (todoState, action) => {
   switch (action.type) {
@@ -100,9 +98,7 @@ const useTodoAppState = () => {
   }, []);
 
   const findTodoById = useCallback(
-    (id) => {
-      return todoState.find((todo) => todo.id === id);
-    },
+    (id) => todoState.find((todo) => todo.id === id),
     [todoState]
   );
 

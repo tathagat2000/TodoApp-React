@@ -3,20 +3,18 @@ import React, { useCallback } from "react";
 import { URGENCY, CATEGORY } from "../constants";
 import { icons } from "../icons";
 
-const IconButton = React.memo(({ value, filterState, handleClick }) => {
-  return Object.entries(value).map(([key, value]) => {
-    return (
-      <button
-        onClick={handleClick}
-        className={filterState[value] === true ? "icon larger" : "icon"}
-        data-name={value}
-        key={key}
-      >
-        {icons[value]}
-      </button>
-    );
-  });
-});
+const IconButton = React.memo(({ value, filterState, handleClick }) =>
+  Object.entries(value).map(([key, value]) => (
+    <button
+      onClick={handleClick}
+      className={filterState[value] === true ? "icon larger" : "icon"}
+      data-name={value}
+      key={key}
+    >
+      {icons[value]}
+    </button>
+  ))
+);
 
 const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
   const handleClick = useCallback(

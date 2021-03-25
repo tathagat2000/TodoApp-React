@@ -9,24 +9,22 @@ const TodoPanel = React.memo(
     toggleSelectTodo,
     selectedTodoIds,
     showEditWindow,
-  }) => {
-    return (
-      <>
-        <div className="todoList">
-          {todos.map((todo) => (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              onTodoAction={onTodoAction}
-              toggleSelectTodo={toggleSelectTodo}
-              showEditWindow={showEditWindow}
-              isSelected={selectedTodoIds.includes(todo.id)}
-            />
-          ))}
-        </div>
-      </>
-    );
-  }
+  }) => (
+    <>
+      <div className="todoList">
+        {todos.map((todo) => (
+          <Todo
+            key={todo.id}
+            todo={todo}
+            onTodoAction={onTodoAction}
+            toggleSelectTodo={toggleSelectTodo}
+            showEditWindow={showEditWindow}
+            isSelected={selectedTodoIds.includes(todo.id)}
+          />
+        ))}
+      </div>
+    </>
+  )
 );
 
 export { TodoPanel };

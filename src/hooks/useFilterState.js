@@ -10,29 +10,21 @@ const initialFilterState = {
   [CATEGORY.ACADEMIC]: false,
   [CATEGORY.SOCIAL]: false,
 };
-const computeUrgencyFilterValue = (filterState) => {
-  return (
-    filterState[URGENCY.LOW] ||
-    filterState[URGENCY.MEDIUM] ||
-    filterState[URGENCY.HIGH]
-  );
-};
+const computeUrgencyFilterValue = (filterState) =>
+  filterState[URGENCY.LOW] ||
+  filterState[URGENCY.MEDIUM] ||
+  filterState[URGENCY.HIGH];
 
-const computeCategoryFilterValue = (filterState) => {
-  return (
-    filterState[CATEGORY.PERSONAL] ||
-    filterState[CATEGORY.ACADEMIC] ||
-    filterState[CATEGORY.SOCIAL]
-  );
-};
+const computeCategoryFilterValue = (filterState) =>
+  filterState[CATEGORY.PERSONAL] ||
+  filterState[CATEGORY.ACADEMIC] ||
+  filterState[CATEGORY.SOCIAL];
 
-const filterAccordingToUrgencyAndCategory = (filterState, todos) => {
-  return todos.filter((todo) => {
-    return (
+const filterAccordingToUrgencyAndCategory = (filterState, todos) =>
+  todos.filter(
+    (todo) =>
       filterState[[todo[NAMES.URGENCY]]] || filterState[[todo[NAMES.CATEGORY]]]
-    );
-  });
-};
+  );
 
 const useFilterState = () => {
   const [filterState, setFilterState] = useState(initialFilterState);
@@ -44,13 +36,10 @@ const useFilterState = () => {
   const filterTodos = useCallback(
     (todos) => {
       const urgencyFilter = computeUrgencyFilterValue(filterState);
-
       const categoryFilter = computeCategoryFilterValue(filterState);
-
       if (urgencyFilter === false && categoryFilter === false) {
         return todos;
       }
-
       return filterAccordingToUrgencyAndCategory(filterState, todos);
     },
     [filterState]

@@ -11,9 +11,8 @@ const getRatioInDecimal = (numberOfTodos, numberOfCompletedTodos) => {
   return value + " % ";
 };
 
-const getRatioInFraction = (numberOfTodos, numberOfCompletedTodos) => {
-  return numberOfCompletedTodos + " / " + numberOfTodos;
-};
+const getRatioInFraction = (numberOfTodos, numberOfCompletedTodos) =>
+  numberOfCompletedTodos + " / " + numberOfTodos;
 
 const Analytics = React.memo(({ todos }) => {
   const numberOfTodos = todos.length;

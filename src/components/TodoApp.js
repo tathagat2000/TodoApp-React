@@ -3,12 +3,13 @@ import React, { useCallback, useMemo, useState } from "react";
 import { BulkActionPanel } from "./BulkActionPanel";
 import { FilterPanel } from "./FilterPanel";
 import { Analytics } from "./Analytics";
-import { CreateTodoForm } from "./CreateTodoForm";
+import { TodoPanel } from "./TodoPanel";
+import { Modal } from "./Modal";
+import { TodoFormPanel } from "./TodoFormPanel";
+
 import { useTodoAppState } from "../hooks/useTodoAppState";
 import { useFilterState } from "../hooks/useFilterState";
 import { useEditWindow } from "../hooks/useEditWindow";
-import { TodoPanel } from "./TodoPanel";
-import { Modal } from "./Modal";
 
 const TodoApp = () => {
   const { todoState: todos, findTodoById, onTodoAction } = useTodoAppState();
@@ -57,7 +58,7 @@ const TodoApp = () => {
             toggleFilterState={toggleFilterState}
           />
           <Analytics todos={filteredTodos} />
-          <CreateTodoForm onTodoAction={onTodoAction} />
+          <TodoFormPanel onTodoAction={onTodoAction} />
         </div>
       </div>
       {editWindow.show && (

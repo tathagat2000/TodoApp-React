@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useRef } from "react";
 import { useEffect, useReducer } from "react";
 import { ACTIONS } from "../constants";
 import SnackbarContext from "../context/SnackbarContext";
@@ -37,6 +37,8 @@ const useTodoAppState = () => {
   const [todoState, dispatch] = useReducer(reducer, []);
 
   const showSnackbar = useContext(SnackbarContext);
+  const showSnackbarRef = useRef();
+  showSnackbarRef.current = showSnackbar;
 
   useEffect(() => {
     server
@@ -47,7 +49,7 @@ const useTodoAppState = () => {
           payload: { todos: todoList.sort(sortTodos) },
         });
       })
-      .catch(showSnackbar);
+      .catch(showSnackbarRef.current);
     //DOUBT
   }, []);
 

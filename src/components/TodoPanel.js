@@ -3,13 +3,7 @@ import React from "react";
 import { Todo } from "./Todo";
 
 const TodoPanel = React.memo(
-  ({
-    todos,
-    onTodoAction,
-    toggleSelectTodo,
-    selectedTodoIds,
-    showEditWindow,
-  }) => (
+  ({ todos, onTodoAction, selectedTodoIds, onEdit }) => (
     <>
       <div className="todoList">
         {todos.map((todo) => (
@@ -17,8 +11,7 @@ const TodoPanel = React.memo(
             key={todo.id}
             todo={todo}
             onTodoAction={onTodoAction}
-            toggleSelectTodo={toggleSelectTodo}
-            showEditWindow={showEditWindow}
+            onEdit={onEdit}
             isSelected={selectedTodoIds.includes(todo.id)}
           />
         ))}

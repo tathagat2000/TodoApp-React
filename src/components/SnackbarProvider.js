@@ -7,7 +7,7 @@ const SnackbarProvider = ({ children }) => {
   const timeout = useRef();
   const [snackbar, setSnackbar] = useState({ show: false, message: undefined });
 
-  const showSnackbar = useCallback((message = "Please Try Again") => {
+  const showSnackbar = useCallback((message) => {
     clearTimeout(timeout.current);
     setSnackbar({ show: true, message });
     timeout.current = setTimeout(() => {

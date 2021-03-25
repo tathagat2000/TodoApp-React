@@ -3,18 +3,17 @@ import React, { useCallback } from "react";
 import { URGENCY, CATEGORY } from "../constants";
 import { icons } from "../icons";
 
-const IconButton = React.memo(({ value, filterState, handleClick }) =>
-  Object.entries(value).map(([key, value]) => (
+const IconButton = React.memo(({ value, isSelected, handleClick }) => (
+  <>
     <button
       onClick={handleClick}
-      className={filterState[value] === true ? "icon larger" : "icon"}
+      className={isSelected ? "icon larger" : "icon"}
       data-name={value}
-      key={key}
     >
       {icons[value]}
     </button>
-  ))
-);
+  </>
+));
 
 const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
   const handleClick = useCallback(
@@ -30,20 +29,16 @@ const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
     <>
       <div className="filter curve">
         <div className="logos">
-          {
-            <IconButton
-              value={URGENCY}
-              filterState={filterState}
-              handleClick={handleClick}
-            />
-          }
-          {
-            <IconButton
-              value={CATEGORY}
-              filterState={filterState}
-              handleClick={handleClick}
-            />
-          }
+          {[URGENCY, CATEGORY].map((criteria) =>
+            Object.entries(criteria).map(([key, value]) => (
+              <IconButton
+                handleClick={handleClick}
+                isSelected={filterState[value]}
+                value={value}
+                key={key}
+              />
+            ))
+          )}
         </div>
         <p className="filterText">Filter Todos</p>
       </div>

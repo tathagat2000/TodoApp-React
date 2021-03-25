@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect, useReducer } from "react";
+import { useCallback, useRef, useEffect, useReducer, useState } from "react";
 
 import { useSnackbar } from "../components/SnackbarProvider";
 import { Server } from "../Server";
@@ -34,6 +34,7 @@ const reducer = (todoState, action) => {
 
 const useTodoAppState = () => {
   const [todoState, dispatch] = useReducer(reducer, []);
+  const [selectedTodoIds, setSelectedTodoIds] = useState([]);
 
   const showSnackbar = useSnackbar();
   const showSnackbarRef = useRef();
@@ -41,7 +42,7 @@ const useTodoAppState = () => {
 
   useEffect(() => {
     server
-      .getDatabase()
+      .getTodo()
       .then((todoList) => {
         dispatch({
           type: ACTIONS.ADD,
@@ -50,6 +51,11 @@ const useTodoAppState = () => {
       })
       .catch(showSnackbarRef.current);
   }, []);
+
+  const findTodoById = useCallback(
+    (id) => todoState.find((todo) => todo.id === id),
+    [todoState]
+  );
 
   const addTodo = (todos) => {
     return server.createTodo(todos).then(() => {
@@ -81,28 +87,53 @@ const useTodoAppState = () => {
     });
   };
 
-  const onTodoAction = useCallback((action) => {
-    switch (action.type) {
-      case ACTIONS.ADD:
-        return addTodo(action.payload.todo);
-
-      case ACTIONS.UPDATE:
-        return updateTodo(action.payload.updatedTodo);
-
-      case ACTIONS.DELETE:
-        return deleteTodo(action.payload.id);
-
-      default:
-        break;
-    }
+  const toggleSelectedTodo = useCallback((id) => {
+    setSelectedTodoIds((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((todoId) => todoId !== id);
+      } else {
+        return prev.concat(id);
+      }
+    });
   }, []);
 
-  const findTodoById = useCallback(
-    (id) => todoState.find((todo) => todo.id === id),
-    [todoState]
+  const resetSelectedTodoIds = useCallback(() => {
+    setSelectedTodoIds([]);
+  }, []);
+
+  const onTodoAction = useCallback(
+    (action) => {
+      switch (action.type) {
+        case ACTIONS.ADD:
+          return addTodo(action.payload.todo);
+
+        case ACTIONS.UPDATE:
+          return updateTodo(action.payload.updatedTodo);
+
+        case ACTIONS.DELETE:
+          return deleteTodo(action.payload.id);
+
+        case ACTIONS.SET_ISCOMPLETED:
+          const isCompleted = action.payload.isCompleted;
+          const updatedTodos = action.payload.ids
+            .map(findTodoById)
+            .map((todo) => ({ ...todo, isCompleted }));
+          return updateTodo(updatedTodos);
+
+        case ACTIONS.TOGGLE_SELECTED_TODO:
+          return toggleSelectedTodo(action.payload.id);
+
+        case ACTIONS.RESET_SELECTED_TODOS:
+          return resetSelectedTodoIds();
+
+        default:
+          break;
+      }
+    },
+    [findTodoById, toggleSelectedTodo, resetSelectedTodoIds]
   );
 
-  return { todoState, findTodoById, onTodoAction };
+  return { todoState, onTodoAction, selectedTodoIds };
 };
 
 export { useTodoAppState };

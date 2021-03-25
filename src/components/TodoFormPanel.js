@@ -16,7 +16,7 @@ const createTodoObject = (todo) => ({
   ...todo,
   id: new Date().valueOf(),
   isCompleted: false,
-  time: helperFunctions.getTime(),
+  [NAMES.TIME]: helperFunctions.getTime(),
 });
 
 const TodoFormPanel = React.memo(({ onTodoAction }) => {

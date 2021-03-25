@@ -1,18 +1,14 @@
 import React from "react";
 
-const getRatioInDecimal = (numberOfTodos, numberOfCompletedTodos) => {
+const getRatioInDecimal = (numerator, denominator) => {
   let value;
-  if (numberOfCompletedTodos === 0) {
+  if (denominator === 0) {
     value = 0;
   } else {
-    value = Math.round((100 * numberOfCompletedTodos) / numberOfTodos);
+    value = Math.round((100 * numerator) / denominator);
   }
-
   return value + " % ";
 };
-
-const getRatioInFraction = (numberOfTodos, numberOfCompletedTodos) =>
-  numberOfCompletedTodos + " / " + numberOfTodos;
 
 const Analytics = React.memo(({ todos }) => {
   const numberOfTodos = todos.length;
@@ -21,14 +17,11 @@ const Analytics = React.memo(({ todos }) => {
   ).length;
 
   const ratioInDecimal = getRatioInDecimal(
-    numberOfTodos,
-    numberOfCompletedTodos
+    numberOfCompletedTodos,
+    numberOfTodos
   );
+  const rationInFraction = numberOfCompletedTodos + " / " + numberOfTodos;
 
-  const rationInFraction = getRatioInFraction(
-    numberOfTodos,
-    numberOfCompletedTodos
-  );
   return (
     <div className="analytics curve">
       <div className="circle">

@@ -2,43 +2,41 @@ import { helperFunctions } from "./helperFunctions.js";
 
 export class Server {
   constructor() {
-    this.database = this.loadDatabaseFromLocalStorage();
+    this.data = this.loadDataFromLocalStorage();
     this.FailProbability = 0.01;
   }
 
   isServerWorking = () => {
-    const current = Math.random();
-    if (current > this.FailProbability) {
+    if (Math.random() > this.FailProbability) {
       return true;
     }
     return false;
   };
 
-  getDatabase = () => {
+  getTodo = () => {
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
-        resolve(this.database);
+        resolve(this.data);
       } else {
         reject("Please Refresh Again");
       }
     });
   };
 
-  saveDatabaseInLocalStorage = () =>
-    localStorage.setItem("todos", JSON.stringify(this.database));
+  saveDataInLocalStorage = () =>
+    localStorage.setItem("todos", JSON.stringify(this.data));
 
-  loadDatabaseFromLocalStorage = () =>
+  loadDataFromLocalStorage = () =>
     JSON.parse(localStorage.getItem("todos")) || [];
 
-  findIndexOfTodoById = (id) =>
-    this.database.findIndex((todo) => todo.id === id);
+  findIndexOfTodoById = (id) => this.data.findIndex((todo) => todo.id === id);
 
   createTodo = (todos) => {
     const todoList = helperFunctions.convertToList(todos);
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
-        this.database = [...this.database, ...todoList];
-        this.saveDatabaseInLocalStorage();
+        this.data = [...this.data, ...todoList];
+        this.saveDataInLocalStorage();
         resolve("done");
       } else {
         reject("Could Not Add Todo");
@@ -51,10 +49,10 @@ export class Server {
 
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
-        this.database = this.database.filter((todo) => {
+        this.data = this.data.filter((todo) => {
           return !todoIdsList.includes(todo.id);
         });
-        this.saveDatabaseInLocalStorage();
+        this.saveDataInLocalStorage();
 
         resolve("done");
       } else {
@@ -68,11 +66,9 @@ export class Server {
     const todoIds = todoList.map((todo) => todo.id);
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
-        this.database = this.database.filter(
-          (todo) => !todoIds.includes(todo.id)
-        );
-        this.database = [...this.database, ...todoList];
-        this.saveDatabaseInLocalStorage();
+        this.data = this.data.filter((todo) => !todoIds.includes(todo.id));
+        this.data = [...this.data, ...todoList];
+        this.saveDataInLocalStorage();
         resolve("done");
       } else {
         reject("Could Not Update Todo");

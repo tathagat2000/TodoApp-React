@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 
 import { BulkActionPanel } from "./BulkActionPanel";
 import { FilterPanel } from "./FilterPanel";
@@ -12,24 +12,9 @@ import { useFilterState } from "../hooks/useFilterState";
 import { useEditWindow } from "../hooks/useEditWindow";
 
 const TodoApp = () => {
-  const { todoState: todos, findTodoById, onTodoAction } = useTodoAppState();
+  const { todoState: todos, onTodoAction, selectedTodoIds } = useTodoAppState();
   const { filterState, filterTodos, toggleFilterState } = useFilterState();
   const { editWindow, showEditWindow, closeEditWindow } = useEditWindow();
-  const [selectedTodoIds, setSelectedTodoIds] = useState([]);
-
-  const toggleSelectTodo = useCallback((id) => {
-    setSelectedTodoIds((prev) => {
-      if (prev.includes(id)) {
-        return prev.filter((todoId) => todoId !== id);
-      } else {
-        return prev.concat(id);
-      }
-    });
-  }, []);
-
-  const resetSelectedTodoIds = useCallback(() => {
-    setSelectedTodoIds([]);
-  }, []);
 
   const filteredTodos = useMemo(() => filterTodos(todos), [filterTodos, todos]);
 
@@ -40,15 +25,12 @@ const TodoApp = () => {
           <TodoPanel
             todos={filteredTodos}
             onTodoAction={onTodoAction}
-            toggleSelectTodo={toggleSelectTodo}
             selectedTodoIds={selectedTodoIds}
-            showEditWindow={showEditWindow}
+            onEdit={showEditWindow}
           />
           <BulkActionPanel
             selectedTodoIds={selectedTodoIds}
-            resetSelectedTodoIds={resetSelectedTodoIds}
             onTodoAction={onTodoAction}
-            findTodoById={findTodoById}
           />
         </div>
 
@@ -63,8 +45,8 @@ const TodoApp = () => {
       </div>
       {editWindow.show && (
         <Modal
-          todo={editWindow.data}
-          closeEditWindow={closeEditWindow}
+          initialData={editWindow.data}
+          onClose={closeEditWindow}
           onTodoAction={onTodoAction}
         />
       )}

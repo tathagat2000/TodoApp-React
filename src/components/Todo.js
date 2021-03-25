@@ -1,4 +1,4 @@
-import { ACTIONS } from "../constants";
+import { ACTIONS, NAMES } from "../constants";
 import { icons } from "../icons";
 import React, { useContext } from "react";
 import snackbarContext from "../context/SnackbarContext";
@@ -52,13 +52,13 @@ const Todo = ({
         </button>
       </div>
 
-      <div className="todoText">{todo.text}</div>
+      <div className="todoText">{todo[NAMES.TEXT]}</div>
 
       <div className="time">{todo.time}</div>
 
       <div className="symbols">
-        {icons[todo.urgency]}
-        {icons[todo.category]}
+        {icons[todo[NAMES.URGENCY]]}
+        {icons[todo[NAMES.CATEGORY]]}
       </div>
 
       <div className="complete">

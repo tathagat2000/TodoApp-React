@@ -11,7 +11,7 @@ const useEditWindow = (onTodoAction) => {
     setEditWindow({ show: false });
   }, []);
 
-  return [editWindow, showEditWindow, closeEditWindow];
+  return { editWindow, showEditWindow, closeEditWindow };
 };
 
 export default useEditWindow;

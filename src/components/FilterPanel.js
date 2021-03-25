@@ -4,16 +4,10 @@ import React, { useCallback } from "react";
 
 const IconButton = React.memo(({ value, filterState, handleClick }) => {
   return Object.entries(value).map(([key, value]) => {
-    let className;
-    if (filterState[value]) {
-      className = "icon larger";
-    } else {
-      className = "icon";
-    }
     return (
       <button
         onClick={handleClick}
-        className={className}
+        className={filterState[value] === true ? "icon larger" : "icon"}
         data-name={value}
         key={key}
       >

@@ -11,28 +11,30 @@ const sortTodos = (todo1, todo2) => {
   return todo1.id - todo2.id;
 };
 
-const reducer = (todos, action) => {
+const reducer = (todoState, action) => {
   switch (action.type) {
     case ACTIONS.ADD:
-      return todos.concat(action.payload.todos);
+      return todoState.concat(action.payload.todos);
 
     case ACTIONS.DELETE:
-      return todos.filter((todo) => !action.payload.todoIds.includes(todo.id));
+      return todoState.filter(
+        (todo) => !action.payload.todoIds.includes(todo.id)
+      );
 
     case ACTIONS.UPDATE:
       const updatedTodoIds = action.payload.updatedTodos.map((todo) => todo.id);
-      return todos
+      return todoState
         .filter((todo) => !updatedTodoIds.includes(todo.id))
         .concat(action.payload.updatedTodos)
         .sort(sortTodos);
 
     default:
-      return todos;
+      return todoState;
   }
 };
 
 const useTodoAppState = () => {
-  const [todos, dispatch] = useReducer(reducer, []);
+  const [todoState, dispatch] = useReducer(reducer, []);
 
   const showSnackbar = useContext(SnackbarContext);
 
@@ -97,12 +99,12 @@ const useTodoAppState = () => {
 
   const findTodoById = useCallback(
     (id) => {
-      return todos.find((todo) => todo.id === id);
+      return todoState.find((todo) => todo.id === id);
     },
-    [todos]
+    [todoState]
   );
 
-  return [todos, findTodoById, onTodoAction];
+  return [todoState, findTodoById, onTodoAction];
 };
 
 export default useTodoAppState;

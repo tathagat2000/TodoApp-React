@@ -41,7 +41,7 @@ export class Server {
         this.saveDatabaseInLocalStorage();
         resolve("done");
       } else {
-        reject("Could Not Add Bulk Todos");
+        reject("Could Not Add Todo");
       }
     });
   };
@@ -58,7 +58,7 @@ export class Server {
 
         resolve("done");
       } else {
-        reject("Could Not Delete Selected Todos");
+        reject("Could Not Delete Todo");
       }
     });
   };
@@ -75,7 +75,7 @@ export class Server {
         this.saveDatabaseInLocalStorage();
         resolve("done");
       } else {
-        reject("Could Not Update Selected Todos");
+        reject("Could Not Update Todo");
       }
     });
   };

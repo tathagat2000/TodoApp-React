@@ -9,6 +9,7 @@ const BulkActionPanel = ({
   onTodoAction,
   findTodoById,
 }) => {
+  //DOUBT WHY TO MEMOIZE FUNCTIONS HERE?
   const showSnackbar = useContext(SnackbarContext);
   const updateCompletedValue = (isCompleted) => {
     const updatedTodos = selectedTodoIds.map(findTodoById).map((todo) => {

@@ -55,7 +55,7 @@ const useFilterState = () => {
     [filterState]
   );
 
-  return [filterState, filterTodos, toggleFilterState];
+  return { filterState, filterTodos, toggleFilterState };
 };
 
 export default useFilterState;

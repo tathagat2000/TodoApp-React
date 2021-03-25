@@ -1,19 +1,19 @@
 export const URGENCY = {
-  LOW: "low",
-  MEDIUM: "medium",
-  HIGH: "high",
+  LOW: "Low",
+  MEDIUM: "Medium",
+  HIGH: "High",
 };
 
 export const CATEGORY = {
-  PERSONAL: "personal",
-  ACADEMIC: "academic",
-  SOCIAL: "social",
+  PERSONAL: "Personal",
+  ACADEMIC: "Academic",
+  SOCIAL: "Social",
 };
 
 export const NAMES = {
-  URGENCY: "urgency",
-  CATEGORY: "category",
-  TEXT: "text",
+  URGENCY: "URGENCY",
+  CATEGORY: "CATEGORY",
+  TEXT: "TEXT",
 };
 
 export const ACTIONS = {

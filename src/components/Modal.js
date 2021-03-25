@@ -1,19 +1,8 @@
 import React, { useContext, useState } from "react";
 import { ACTIONS, CATEGORY, NAMES, URGENCY } from "../constants";
 import SnackbarContext from "../context/SnackbarContext";
-const Option = ({ value }) => {
-  return (
-    <>
-      {Object.entries(value).map(([key, value]) => {
-        return (
-          <option value={value} key={key}>
-            {value}
-          </option>
-        );
-      })}
-    </>
-  );
-};
+import OptionList from "./OptionList";
+
 const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
   const [updatedTodo, setUpdatedTodo] = useState(todo);
   const showSnackbar = useContext(SnackbarContext);
@@ -56,7 +45,7 @@ const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
             className="selector"
             onChange={updateState}
           >
-            {<Option value={URGENCY} />}
+            {<OptionList value={URGENCY} />}
           </select>
         </div>
         <div className="category">
@@ -67,7 +56,7 @@ const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
             className="selector"
             onChange={updateState}
           >
-            {<Option value={CATEGORY} />}
+            {<OptionList value={CATEGORY} />}
           </select>
         </div>
         <div className="modalButtons">

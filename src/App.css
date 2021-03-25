@@ -511,9 +511,10 @@ body {
   z-index: 1;
   left: 50%;
   bottom: 30px;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  /* -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s; */
 }
+/* 
 @-webkit-keyframes fadein {
   from {
     bottom: 0;
@@ -556,4 +557,4 @@ body {
     bottom: 0;
     opacity: 0;
   }
-}
+} */

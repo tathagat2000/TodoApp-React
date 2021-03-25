@@ -1,15 +1,17 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 
 import SnackbarContext from "../context/SnackbarContext";
 import Snackbar from "./Snackbar";
 
 const SnackbarProvider = ({ children }) => {
-  const [snackbar, setSnackbar] = useState({ show: false, message: null });
+  const timeout = useRef();
+  const [snackbar, setSnackbar] = useState({ show: false, message: undefined });
 
   const showSnackbar = useCallback((message = "Please Try Again") => {
+    clearTimeout(timeout.current);
     setSnackbar({ show: true, message });
-    setTimeout(() => {
-      setSnackbar({ show: false });
+    timeout.current = setTimeout(() => {
+      setSnackbar({ show: false, message: undefined });
     }, 1500);
   }, []);
 

@@ -4,7 +4,7 @@ const useEditWindow = (onTodoAction) => {
   const [editWindow, setEditWindow] = useState({ show: false });
 
   const showEditWindow = useCallback((todo) => {
-    setEditWindow({ show: true, payload: todo });
+    setEditWindow({ show: true, data: todo });
   }, []);
 
   const closeEditWindow = useCallback(() => {

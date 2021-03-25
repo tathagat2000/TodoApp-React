@@ -104,7 +104,7 @@ const useTodoAppState = () => {
     [todoState]
   );
 
-  return [todoState, findTodoById, onTodoAction];
+  return { todoState, findTodoById, onTodoAction };
 };
 
 export default useTodoAppState;

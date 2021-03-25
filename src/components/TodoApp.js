@@ -9,7 +9,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import TodoPanel from "./TodoPanel";
 import Modal from "./Modal";
 const TodoApp = () => {
-  const [todos, findTodoById, onTodoAction] = useTodoAppState();
+  const { todoState: todos, findTodoById, onTodoAction } = useTodoAppState();
   const { filterState, filterTodos, toggleFilterState } = useFilterState();
   const { editWindow, showEditWindow, closeEditWindow } = useEditWindow();
   const [selectedTodoIds, setSelectedTodoIds] = useState([]);
@@ -60,7 +60,7 @@ const TodoApp = () => {
       </div>
       {editWindow.show && (
         <Modal
-          todo={editWindow.payload}
+          todo={editWindow.data}
           closeEditWindow={closeEditWindow}
           onTodoAction={onTodoAction}
         />

@@ -11,7 +11,6 @@ const INITIAL_TODO = {
 };
 
 const createTodoObject = (todo) => {
-  //DOUBT WHY TO SPREAD OPERATOR FIRST?
   return {
     ...todo,
     id: new Date().valueOf(),

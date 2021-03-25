@@ -50,7 +50,6 @@ const useTodoAppState = () => {
         });
       })
       .catch(showSnackbarRef.current);
-    //DOUBT
   }, []);
 
   const addTodo = (todos) => {

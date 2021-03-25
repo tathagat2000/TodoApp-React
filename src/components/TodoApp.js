@@ -69,4 +69,4 @@ const TodoApp = () => {
   );
 };
 
-export default TodoApp;
+export default React.memo(TodoApp);

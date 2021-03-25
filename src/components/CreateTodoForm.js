@@ -1,8 +1,8 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ACTIONS, CATEGORY, URGENCY, NAMES } from "../constants";
 import { helperFunctions } from "../helperFunctions";
-import SnackbarContext from "../context/SnackbarContext";
 import OptionList from "./OptionList";
+import { useSnackbar } from "./SnackbarProvider";
 
 const INITIAL_TODO = {
   [NAMES.TEXT]: "",
@@ -21,7 +21,7 @@ const createTodoObject = (todo) => {
 
 const CreateTodoForm = ({ onTodoAction }) => {
   const [todo, setTodo] = useState(INITIAL_TODO);
-  const showSnackbar = useContext(SnackbarContext);
+  const showSnackbar = useSnackbar();
 
   const handleKeyPress = (event) => {
     const enterKey = event.keyCode || event.which || 0;

@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { ACTIONS, CATEGORY, NAMES, URGENCY } from "../constants";
-import SnackbarContext from "../context/SnackbarContext";
 import OptionList from "./OptionList";
+import { useSnackbar } from "./SnackbarProvider";
 
 const Modal = ({ todo, closeEditWindow, onTodoAction }) => {
   const [updatedTodo, setUpdatedTodo] = useState(todo);
-  const showSnackbar = useContext(SnackbarContext);
+  const showSnackbar = useSnackbar();
 
   const updateState = (event) => {
     setUpdatedTodo((prev) => ({

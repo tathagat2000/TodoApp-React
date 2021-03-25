@@ -1,7 +1,7 @@
 import { ACTIONS } from "../constants";
 import { icons } from "../icons";
-import React, { useContext } from "react";
-import SnackbarContext from "../context/SnackbarContext";
+import React from "react";
+import { useSnackbar } from "./SnackbarProvider";
 
 const BulkActionPanel = ({
   selectedTodoIds,
@@ -9,7 +9,7 @@ const BulkActionPanel = ({
   onTodoAction,
   findTodoById,
 }) => {
-  const showSnackbar = useContext(SnackbarContext);
+  const showSnackbar = useSnackbar();
   const updateCompletedValue = (isCompleted) => {
     const updatedTodos = selectedTodoIds.map(findTodoById).map((todo) => {
       return { ...todo, isCompleted };

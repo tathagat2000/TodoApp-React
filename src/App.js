@@ -1,7 +1,7 @@
 import "./App.css";
 import TodoApp from "./components/TodoApp";
 import Header from "./components/Header";
-import SnackbarProvider from "./components/SnackbarProvider";
+import { SnackbarProvider } from "./components/SnackbarProvider";
 function App() {
   return (
     <>

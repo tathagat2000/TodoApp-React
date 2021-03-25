@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useRef } from "react";
-
-import SnackbarContext from "../context/SnackbarContext";
+import React, { useState, useCallback, useRef, useContext } from "react";
 import Snackbar from "./Snackbar";
+
+const SnackbarContext = React.createContext();
 
 const SnackbarProvider = ({ children }) => {
   const timeout = useRef();
@@ -23,4 +23,8 @@ const SnackbarProvider = ({ children }) => {
   );
 };
 
-export default SnackbarProvider;
+const useSnackbar = () => {
+  return useContext(SnackbarContext);
+};
+
+export { SnackbarProvider, useSnackbar };

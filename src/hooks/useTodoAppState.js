@@ -1,7 +1,7 @@
-import { useCallback, useContext, useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useEffect, useReducer } from "react";
+import { useSnackbar } from "../components/SnackbarProvider";
 import { ACTIONS } from "../constants";
-import SnackbarContext from "../context/SnackbarContext";
 import { helperFunctions } from "../helperFunctions";
 import { Server } from "../Server";
 
@@ -36,7 +36,7 @@ const reducer = (todoState, action) => {
 const useTodoAppState = () => {
   const [todoState, dispatch] = useReducer(reducer, []);
 
-  const showSnackbar = useContext(SnackbarContext);
+  const showSnackbar = useSnackbar();
   const showSnackbarRef = useRef();
   showSnackbarRef.current = showSnackbar;
 

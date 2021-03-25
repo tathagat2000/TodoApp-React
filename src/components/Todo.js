@@ -1,7 +1,7 @@
 import { ACTIONS, NAMES } from "../constants";
 import { icons } from "../icons";
-import React, { useContext } from "react";
-import snackbarContext from "../context/SnackbarContext";
+import React from "react";
+import { useSnackbar } from "./SnackbarProvider";
 const Todo = ({
   todo,
   onTodoAction,
@@ -9,7 +9,7 @@ const Todo = ({
   showEditWindow,
   isSelected,
 }) => {
-  const showSnackbar = useContext(snackbarContext);
+  const showSnackbar = useSnackbar();
   const toggleComplete = () => {
     const updatedTodo = { ...todo, isCompleted: !todo.isCompleted };
     onTodoAction({

@@ -49,7 +49,7 @@ const TodoFormPanel = React.memo(({ onTodoAction }) => {
     <>
       <div className="createTodo curve" onKeyPress={handleKeyPress}>
         <div className="createText">Create Todo</div>
-        <TodoForm onChange={updateState} todo={todo} />
+        <TodoForm onChange={updateState} data={todo} />
       </div>
     </>
   );

@@ -15,14 +15,14 @@ const Todo = React.memo(({ todo, onTodoAction, onEdit, isSelected }) => {
     }).catch(showSnackbar);
   };
 
-  const onDelete = (event) => {
+  const onDelete = () => {
     onTodoAction({
       type: ACTIONS.DELETE,
       payload: { id: todo.id },
     }).catch(showSnackbar);
   };
 
-  const onSelect = (event) => {
+  const onSelect = () => {
     onTodoAction({
       type: ACTIONS.TOGGLE_SELECTED_TODO,
       payload: { id: todo.id },

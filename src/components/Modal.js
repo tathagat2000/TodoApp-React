@@ -28,7 +28,7 @@ const Modal = React.memo(({ initialData, onClose, onTodoAction }) => {
   return (
     <div className="myModal">
       <div className="modalContent">
-        <TodoForm onChange={updateState} todo={updatedTodo} />
+        <TodoForm onChange={updateState} data={updatedTodo} />
         <div className="modalButtons">
           <button className="cancel" onClick={onClose}>
             Cancel

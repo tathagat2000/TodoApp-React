@@ -12,9 +12,8 @@ const getRatioInDecimal = (numerator, denominator) => {
 
 const Analytics = React.memo(({ todos }) => {
   const numberOfTodos = todos.length;
-  const numberOfCompletedTodos = todos.filter(
-    (todo) => todo.isCompleted === true
-  ).length;
+  const numberOfCompletedTodos = todos.filter((todo) => todo.isCompleted)
+    .length;
 
   const ratioInDecimal = getRatioInDecimal(
     numberOfCompletedTodos,

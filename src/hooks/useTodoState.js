@@ -1,7 +1,7 @@
 import { useCallback, useRef, useEffect, useReducer, useState } from "react";
 import _castArray from "lodash/castArray";
 
-import { useSnackbar } from "../components/SnackbarProvider";
+import { useSnackbarContext } from "../components/SnackbarProvider";
 import { server } from "../Server";
 
 import { ACTIONS } from "../constants";
@@ -34,7 +34,7 @@ const useTodoState = () => {
   const [todoState, dispatch] = useReducer(reducer, []);
   const [selectedTodoIds, setSelectedTodoIds] = useState([]);
 
-  const showSnackbar = useSnackbar();
+  const showSnackbar = useSnackbarContext();
   const showSnackbarRef = useRef();
   showSnackbarRef.current = showSnackbar;
 

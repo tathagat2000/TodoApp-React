@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 
 import { TodoForm } from "./TodoForm";
 
-import { useSnackbar } from "./SnackbarProvider";
+import { useSnackbarContext } from "./SnackbarProvider";
 
 import { ACTIONS, CATEGORY, URGENCY } from "../constants";
 
@@ -24,7 +24,7 @@ const createTodoObject = (todo) => ({
 
 const TodoFormContainer = React.memo(({ onTodoAction }) => {
   const [todo, setTodo] = useState(INITIAL_TODO);
-  const showSnackbar = useSnackbar();
+  const showSnackbar = useSnackbarContext();
 
   const handleKeyPress = (event) => {
     const enterKey = event.keyCode || event.which || 0;

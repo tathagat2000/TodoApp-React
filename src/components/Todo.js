@@ -1,12 +1,12 @@
 import React from "react";
 
-import { useSnackbar } from "./SnackbarProvider";
+import { useSnackbarContext } from "./SnackbarProvider";
 
 import { ACTIONS } from "../constants";
 import { icons } from "../icons";
 
 const Todo = React.memo(({ todo, onTodoAction, onEdit, isSelected }) => {
-  const showSnackbar = useSnackbar();
+  const showSnackbar = useSnackbarContext();
 
   const onToggleComplete = () => {
     onTodoAction({

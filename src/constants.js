@@ -10,13 +10,6 @@ export const CATEGORY = {
   SOCIAL: "Social",
 };
 
-export const NAMES = {
-  URGENCY: "URGENCY",
-  CATEGORY: "CATEGORY",
-  TEXT: "TEXT",
-  TIME: "TIME",
-};
-
 export const ACTIONS = {
   EDIT: "EDIT",
   DELETE: "DELETE",

@@ -2,7 +2,7 @@ import React from "react";
 
 import { useSnackbar } from "./SnackbarProvider";
 
-import { ACTIONS, NAMES } from "../constants";
+import { ACTIONS } from "../constants";
 import { icons } from "../icons";
 
 const Todo = React.memo(({ todo, onTodoAction, onEdit, isSelected }) => {
@@ -52,13 +52,13 @@ const Todo = React.memo(({ todo, onTodoAction, onEdit, isSelected }) => {
         </button>
       </div>
 
-      <div className="todo-text">{todo[NAMES.TEXT]}</div>
+      <div className="todo-text">{todo.text}</div>
 
-      <div className="time">{todo[NAMES.TIME]}</div>
+      <div className="time">{todo.time}</div>
 
       <div className="symbols">
-        {icons[todo[NAMES.URGENCY]]}
-        {icons[todo[NAMES.CATEGORY]]}
+        {icons[todo.urgency]}
+        {icons[todo.category]}
       </div>
 
       <div className="complete">

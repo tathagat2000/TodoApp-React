@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-import { URGENCY, CATEGORY, NAMES } from "../constants";
+import { URGENCY, CATEGORY } from "../constants";
 
 const initialFilterState = {
   [URGENCY.LOW]: false,
@@ -22,8 +22,7 @@ const computeCategoryFilterValue = (filterState) =>
 
 const filterAccordingToUrgencyAndCategory = (filterState, todos) =>
   todos.filter(
-    (todo) =>
-      filterState[[todo[NAMES.URGENCY]]] || filterState[[todo[NAMES.CATEGORY]]]
+    (todo) => filterState[todo.urgency] || filterState[todo.category]
   );
 
 const useFilterState = () => {

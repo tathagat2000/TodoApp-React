@@ -2,13 +2,13 @@ import React from "react";
 
 import { OptionList } from "./OptionList";
 
-import { CATEGORY, NAMES, URGENCY } from "../constants";
+import { CATEGORY, URGENCY } from "../constants";
 
 const TodoForm = React.memo(({ onChange, data }) => (
   <>
     <input
-      data-type={NAMES.TEXT}
-      value={data[NAMES.TEXT]}
+      data-type="text"
+      value={data.text}
       type="text"
       className="add-todo"
       placeholder="Add Your Todo..."
@@ -17,8 +17,8 @@ const TodoForm = React.memo(({ onChange, data }) => (
     <div className="urgency">
       <p className="text">Urgency</p>
       <select
-        value={data[NAMES.URGENCY]}
-        data-type={NAMES.URGENCY}
+        value={data.urgency}
+        data-type={"urgency"}
         className="selector"
         onChange={onChange}
       >
@@ -28,8 +28,8 @@ const TodoForm = React.memo(({ onChange, data }) => (
     <div className="category">
       <p className="text">Category</p>
       <select
-        value={data[NAMES.CATEGORY]}
-        data-type={NAMES.CATEGORY}
+        value={data.category}
+        data-type="category"
         className="selector"
         onChange={onChange}
       >

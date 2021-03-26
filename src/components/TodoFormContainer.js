@@ -4,12 +4,12 @@ import { TodoForm } from "./TodoForm";
 
 import { useSnackbar } from "./SnackbarProvider";
 
-import { ACTIONS, CATEGORY, URGENCY, NAMES } from "../constants";
+import { ACTIONS, CATEGORY, URGENCY } from "../constants";
 
 const INITIAL_TODO = {
-  [NAMES.TEXT]: "",
-  [NAMES.URGENCY]: URGENCY.LOW,
-  [NAMES.CATEGORY]: CATEGORY.PERSONAL,
+  text: "",
+  urgency: URGENCY.LOW,
+  category: CATEGORY.PERSONAL,
 };
 
 const getCurrentTime = () =>
@@ -19,7 +19,7 @@ const createTodoObject = (todo) => ({
   ...todo,
   id: new Date().valueOf(),
   isCompleted: false,
-  [NAMES.TIME]: getCurrentTime(),
+  time: getCurrentTime(),
 });
 
 const TodoFormContainer = React.memo(({ onTodoAction }) => {
@@ -28,7 +28,7 @@ const TodoFormContainer = React.memo(({ onTodoAction }) => {
 
   const handleKeyPress = (event) => {
     const enterKey = event.keyCode || event.which || 0;
-    if (enterKey === 13 && todo[NAMES.TEXT]) {
+    if (enterKey === 13 && todo.text) {
       const todoObject = createTodoObject(todo);
       onTodoAction({
         type: ACTIONS.ADD,

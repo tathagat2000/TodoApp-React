@@ -3,18 +3,19 @@ import React, { useMemo } from "react";
 import { BulkActionPanel } from "./BulkActionPanel";
 import { FilterPanel } from "./FilterPanel";
 import { Analytics } from "./Analytics";
-import { TodoPanel } from "./TodoPanel";
+import { TodoList } from "./TodoList";
+import { EditWindow } from "./EditWindow";
 import { Modal } from "./Modal";
-import { TodoFormPanel } from "./TodoFormPanel";
+import { TodoFormContainer } from "./TodoFormContainer";
 
-import { useTodoAppState } from "../hooks/useTodoAppState";
+import { useTodoState } from "../hooks/useTodoState";
 import { useFilterState } from "../hooks/useFilterState";
-import { useEditWindow } from "../hooks/useEditWindow";
+import { useOverlay } from "../hooks/useOverlay";
 
 const TodoApp = () => {
-  const { todoState: todos, onTodoAction, selectedTodoIds } = useTodoAppState();
+  const { todoState: todos, onTodoAction, selectedTodoIds } = useTodoState();
   const { filterState, filterTodos, toggleFilterState } = useFilterState();
-  const { editWindow, showEditWindow, closeEditWindow } = useEditWindow();
+  const { overlay, showOverlay, closeOverlay } = useOverlay();
 
   const filteredTodos = useMemo(() => filterTodos(todos), [filterTodos, todos]);
 
@@ -22,11 +23,11 @@ const TodoApp = () => {
     <>
       <div className="mainBody">
         <div className="col1 curve">
-          <TodoPanel
+          <TodoList
             todos={filteredTodos}
             onTodoAction={onTodoAction}
             selectedTodoIds={selectedTodoIds}
-            onEdit={showEditWindow}
+            onEdit={showOverlay}
           />
           <BulkActionPanel
             selectedTodoIds={selectedTodoIds}
@@ -40,15 +41,17 @@ const TodoApp = () => {
             toggleFilterState={toggleFilterState}
           />
           <Analytics todos={filteredTodos} />
-          <TodoFormPanel onTodoAction={onTodoAction} />
+          <TodoFormContainer onTodoAction={onTodoAction} />
         </div>
       </div>
-      {editWindow.show && (
-        <Modal
-          initialData={editWindow.data}
-          onClose={closeEditWindow}
-          onTodoAction={onTodoAction}
-        />
+      {overlay.show && (
+        <Modal>
+          <EditWindow
+            initialData={overlay.data}
+            onClose={closeOverlay}
+            onTodoAction={onTodoAction}
+          />
+        </Modal>
       )}
     </>
   );

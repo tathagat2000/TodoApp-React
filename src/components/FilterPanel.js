@@ -15,6 +15,12 @@ const IconButton = React.memo(({ value, isSelected, handleClick }) => (
   </>
 ));
 
+const FILTER_OBJECT = Object.assign({}, URGENCY, CATEGORY);
+const FILTERS = Object.entries(FILTER_OBJECT).map(([key, value]) => [
+  key,
+  value,
+]);
+
 const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
   const handleClick = useCallback(
     (event) => {
@@ -25,20 +31,19 @@ const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
     },
     [toggleFilterState]
   );
+
   return (
     <>
       <div className="filter curve">
         <div className="logos">
-          {[URGENCY, CATEGORY].map((criteria) =>
-            Object.entries(criteria).map(([key, value]) => (
-              <IconButton
-                handleClick={handleClick}
-                isSelected={filterState[value]}
-                value={value}
-                key={key}
-              />
-            ))
-          )}
+          {FILTERS.map(([key, value]) => (
+            <IconButton
+              handleClick={handleClick}
+              isSelected={filterState[value]}
+              value={value}
+              key={key}
+            />
+          ))}
         </div>
         <p className="filterText">Filter Todos</p>
       </div>

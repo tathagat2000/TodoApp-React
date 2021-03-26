@@ -1,4 +1,4 @@
-import * as _ from "lodash/lang";
+import _castArray from "lodash/castArray";
 
 class Server {
   constructor() {
@@ -32,7 +32,7 @@ class Server {
   findIndexOfTodoById = (id) => this.data.findIndex((todo) => todo.id === id);
 
   createTodo = (todos) => {
-    const todoList = _.castArray(todos);
+    const todoList = _castArray(todos);
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
         this.data = [...this.data, ...todoList];
@@ -45,7 +45,7 @@ class Server {
   };
 
   deleteTodo = (todoIds) => {
-    const todoIdsList = _.castArray(todoIds);
+    const todoIdsList = _castArray(todoIds);
 
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
@@ -62,7 +62,7 @@ class Server {
   };
 
   updateTodo = (todos) => {
-    const todoList = _.castArray(todos);
+    const todoList = _castArray(todos);
     const todoIds = todoList.map((todo) => todo.id);
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Todo } from "./Todo";
 
-const TodoPanel = React.memo(
+const TodoList = React.memo(
   ({ todos, onTodoAction, selectedTodoIds, onEdit }) => (
     <>
       <div className="todoList">
@@ -20,6 +20,6 @@ const TodoPanel = React.memo(
   )
 );
 
-export { TodoPanel };
+export { TodoList };
 //DOUBT does it make sense to memoize Todo?
 //React.memo remembers previous memoized value, or many memoized values?

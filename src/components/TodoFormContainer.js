@@ -22,7 +22,7 @@ const createTodoObject = (todo) => ({
   [NAMES.TIME]: getCurrentTime(),
 });
 
-const TodoFormPanel = React.memo(({ onTodoAction }) => {
+const TodoFormContainer = React.memo(({ onTodoAction }) => {
   const [todo, setTodo] = useState(INITIAL_TODO);
   const showSnackbar = useSnackbar();
 
@@ -58,4 +58,4 @@ const TodoFormPanel = React.memo(({ onTodoAction }) => {
   );
 });
 
-export { TodoFormPanel };
+export { TodoFormContainer };

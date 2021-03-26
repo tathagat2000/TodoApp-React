@@ -1,10 +1,10 @@
 import { useCallback, useRef, useEffect, useReducer, useState } from "react";
+import * as _ from "lodash/lang";
 
 import { useSnackbar } from "../components/SnackbarProvider";
 import { server } from "../Server";
 
 import { ACTIONS } from "../constants";
-import { helperFunctions } from "../helperFunctions";
 
 const sortTodos = (todo1, todo2) => todo1.id - todo2.id;
 
@@ -57,7 +57,7 @@ const useTodoAppState = () => {
 
   const addTodo = (todos) => {
     return server.createTodo(todos).then(() => {
-      const todoList = helperFunctions.convertToList(todos);
+      const todoList = _.castArray(todos);
       dispatch({
         type: ACTIONS.ADD,
         payload: { todos: todoList },
@@ -67,7 +67,7 @@ const useTodoAppState = () => {
 
   const deleteTodo = (todoIds) => {
     return server.deleteTodo(todoIds).then(() => {
-      const todoIdsList = helperFunctions.convertToList(todoIds);
+      const todoIdsList = _.castArray(todoIds);
       dispatch({
         type: ACTIONS.DELETE,
         payload: { todoIds: todoIdsList },
@@ -77,7 +77,7 @@ const useTodoAppState = () => {
 
   const updateTodo = (updatedTodos) => {
     return server.updateTodo(updatedTodos).then(() => {
-      const updatedTodosList = helperFunctions.convertToList(updatedTodos);
+      const updatedTodosList = _.castArray(updatedTodos);
       dispatch({
         type: ACTIONS.UPDATE,
         payload: { updatedTodos: updatedTodosList },

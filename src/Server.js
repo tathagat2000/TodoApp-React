@@ -1,4 +1,4 @@
-import { helperFunctions } from "./helperFunctions.js";
+import * as _ from "lodash/lang";
 
 class Server {
   constructor() {
@@ -32,7 +32,7 @@ class Server {
   findIndexOfTodoById = (id) => this.data.findIndex((todo) => todo.id === id);
 
   createTodo = (todos) => {
-    const todoList = helperFunctions.convertToList(todos);
+    const todoList = _.castArray(todos);
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
         this.data = [...this.data, ...todoList];
@@ -45,7 +45,7 @@ class Server {
   };
 
   deleteTodo = (todoIds) => {
-    const todoIdsList = helperFunctions.convertToList(todoIds);
+    const todoIdsList = _.castArray(todoIds);
 
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {
@@ -62,7 +62,7 @@ class Server {
   };
 
   updateTodo = (todos) => {
-    const todoList = helperFunctions.convertToList(todos);
+    const todoList = _.castArray(todos);
     const todoIds = todoList.map((todo) => todo.id);
     return new Promise((resolve, reject) => {
       if (this.isServerWorking()) {

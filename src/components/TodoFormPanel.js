@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
 
+import { TodoForm } from "./TodoForm";
+
 import { useSnackbar } from "./SnackbarProvider";
 
 import { ACTIONS, CATEGORY, URGENCY, NAMES } from "../constants";
-import { helperFunctions } from "../helperFunctions";
-import { TodoForm } from "./TodoForm";
 
 const INITIAL_TODO = {
   [NAMES.TEXT]: "",
@@ -12,11 +12,14 @@ const INITIAL_TODO = {
   [NAMES.CATEGORY]: CATEGORY.PERSONAL,
 };
 
+const getCurrentTime = () =>
+  new Date().toLocaleDateString() + ", " + new Date().toLocaleTimeString();
+
 const createTodoObject = (todo) => ({
   ...todo,
   id: new Date().valueOf(),
   isCompleted: false,
-  [NAMES.TIME]: helperFunctions.getTime(),
+  [NAMES.TIME]: getCurrentTime(),
 });
 
 const TodoFormPanel = React.memo(({ onTodoAction }) => {

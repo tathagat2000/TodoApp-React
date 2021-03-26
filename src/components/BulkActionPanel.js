@@ -39,9 +39,9 @@ const BulkActionPanel = React.memo(({ selectedTodoIds, onTodoAction }) => {
 
   return (
     <>
-      <div className="bulkSelection">
-        <div className="completeSelection">
-          <div className="hiddenTextCompleteSelection">
+      <div className="bulk-selection">
+        <div className="complete-selection">
+          <div className="hidden-text-complete-selection">
             Mark Selection Complete
           </div>
           <button className="round" onClick={setComplete}>
@@ -49,8 +49,8 @@ const BulkActionPanel = React.memo(({ selectedTodoIds, onTodoAction }) => {
           </button>
         </div>
 
-        <div className="incompleteSelection">
-          <span className="hiddenTextIncompleteSelection">
+        <div className="incomplete-selection">
+          <span className="hidden-text-incomplete-selection">
             Mark Selection Incomplete
           </span>
           <button className="round" onClick={setIncomplete}>
@@ -58,8 +58,8 @@ const BulkActionPanel = React.memo(({ selectedTodoIds, onTodoAction }) => {
           </button>
         </div>
 
-        <div className="deleteSelection">
-          <span className="hiddenTextDeleteSelection">Delete Selection</span>
+        <div className="delete-selection">
+          <span className="hidden-text-delete-selection">Delete Selection</span>
           <button className="round" onClick={onDelete}>
             {icons[ACTIONS.BULKDELETE]}
           </button>

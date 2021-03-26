@@ -21,8 +21,8 @@ const TodoApp = () => {
 
   return (
     <>
-      <div className="mainBody">
-        <div className="col1 curve">
+      <div className="main-body">
+        <div className="column-left curve">
           <TodoList
             todos={filteredTodos}
             onTodoAction={onTodoAction}
@@ -35,7 +35,7 @@ const TodoApp = () => {
           />
         </div>
 
-        <div className="col2">
+        <div className="column-right">
           <FilterPanel
             filterState={filterState}
             toggleFilterState={toggleFilterState}

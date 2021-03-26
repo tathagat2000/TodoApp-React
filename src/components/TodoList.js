@@ -5,7 +5,7 @@ import { Todo } from "./Todo";
 const TodoList = React.memo(
   ({ todos, onTodoAction, selectedTodoIds, onEdit }) => (
     <>
-      <div className="todoList">
+      <div className="todo-list">
         {todos.map((todo) => (
           <Todo
             key={todo.id}

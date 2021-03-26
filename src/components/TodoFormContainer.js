@@ -50,8 +50,8 @@ const TodoFormContainer = React.memo(({ onTodoAction }) => {
 
   return (
     <>
-      <div className="createTodo curve" onKeyPress={handleKeyPress}>
-        <div className="createText">Create Todo</div>
+      <div className="create-todo curve" onKeyPress={handleKeyPress}>
+        <div className="create-text">Create Todo</div>
         <TodoForm onChange={updateState} data={todo} />
       </div>
     </>

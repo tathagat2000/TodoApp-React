@@ -45,7 +45,7 @@ const FilterPanel = React.memo(({ filterState, toggleFilterState }) => {
             />
           ))}
         </div>
-        <p className="filterText">Filter Todos</p>
+        <p className="filter-text">Filter Todos</p>
       </div>
     </>
   );

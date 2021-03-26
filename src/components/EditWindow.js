@@ -5,7 +5,6 @@ import { useSnackbar } from "./SnackbarProvider";
 import { ACTIONS } from "../constants";
 import { TodoForm } from "./TodoForm";
 
-//CHANGE HERE
 const EditWindow = React.memo(({ initialData, onClose, onTodoAction }) => {
   const [updatedTodo, setUpdatedTodo] = useState(initialData);
   const showSnackbar = useSnackbar();
@@ -29,7 +28,7 @@ const EditWindow = React.memo(({ initialData, onClose, onTodoAction }) => {
   return (
     <>
       <TodoForm onChange={updateState} data={updatedTodo} />
-      <div className="modalButtons">
+      <div className="modal-buttons">
         <button className="cancel" onClick={onClose}>
           Cancel
         </button>

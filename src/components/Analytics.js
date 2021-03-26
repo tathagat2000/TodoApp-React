@@ -28,7 +28,7 @@ const Analytics = React.memo(({ todos }) => {
         <div className="percent">{ratioInDecimal}</div>
         <div className="ratio">{rationInFraction}</div>
       </div>
-      <p className="analyticsText">Analytics</p>
+      <p className="analytics-text">Analytics</p>
     </div>
   );
 });

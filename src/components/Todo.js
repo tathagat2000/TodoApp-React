@@ -52,7 +52,7 @@ const Todo = React.memo(({ todo, onTodoAction, onEdit, isSelected }) => {
         </button>
       </div>
 
-      <div className="todoText">{todo[NAMES.TEXT]}</div>
+      <div className="todo-text">{todo[NAMES.TEXT]}</div>
 
       <div className="time">{todo[NAMES.TIME]}</div>
 
@@ -62,13 +62,13 @@ const Todo = React.memo(({ todo, onTodoAction, onEdit, isSelected }) => {
       </div>
 
       <div className="complete">
-        <button className="completeButton" onClick={onToggleComplete}>
+        <button className="complete-button" onClick={onToggleComplete}>
           {todo.isCompleted ? "Completed. Undo?" : "Mark Complete"}
         </button>
       </div>
 
       <div
-        className={isSelected ? "notSelect bgRed" : "notSelect bgWhite"}
+        className={isSelected ? "select-button bgRed" : "select-button bgWhite"}
         onClick={onSelect}
       ></div>
     </div>

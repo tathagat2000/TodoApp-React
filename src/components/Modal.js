@@ -1,7 +1,7 @@
 const Modal = ({ children }) => {
   return (
-    <div className="myModal">
-      <div className="modalContent">{children}</div>
+    <div className="modal">
+      <div className="modal-content">{children}</div>
     </div>
   );
 };

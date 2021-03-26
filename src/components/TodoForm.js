@@ -10,7 +10,7 @@ const TodoForm = React.memo(({ onChange, data }) => (
       data-type={NAMES.TEXT}
       value={data[NAMES.TEXT]}
       type="text"
-      className="addTodo"
+      className="add-todo"
       placeholder="Add Your Todo..."
       onChange={onChange}
     />

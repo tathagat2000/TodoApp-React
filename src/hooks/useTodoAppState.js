@@ -1,12 +1,10 @@
 import { useCallback, useRef, useEffect, useReducer, useState } from "react";
 
 import { useSnackbar } from "../components/SnackbarProvider";
-import { Server } from "../Server";
+import { server } from "../Server";
 
 import { ACTIONS } from "../constants";
 import { helperFunctions } from "../helperFunctions";
-
-const server = new Server();
 
 const sortTodos = (todo1, todo2) => todo1.id - todo2.id;
 

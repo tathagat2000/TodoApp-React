@@ -1,6 +1,6 @@
 import { helperFunctions } from "./helperFunctions.js";
 
-export class Server {
+class Server {
   constructor() {
     this.data = this.loadDataFromLocalStorage();
     this.FailProbability = 0.01;
@@ -76,3 +76,6 @@ export class Server {
     });
   };
 }
+
+const server = new Server();
+export { server };
